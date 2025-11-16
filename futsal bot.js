@@ -26,7 +26,7 @@ var _0x4a2c = ['aXZ2bWt0UFJmSHMtZzRQY21iZFd1UThOQjBLNGdHNWxhZnhUel9jYXdSTQ=='];
 var _0x1b5e = function(s) { return atob(s); };
 
 var config = {
-    masterAuth: _0x1b5e(_0x4a2c[0]), // Kalıcı admin
+    masterAuth: _0x1b5e(_0x4a2c[0]), 
     adminAuth: "", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR BAŞKA HERHANGİ BİR İŞLEM YAPMANIZA GEREK YOKTUR.
     maxPlayersPerTeam: 4
 };
