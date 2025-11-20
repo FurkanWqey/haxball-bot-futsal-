@@ -3,8 +3,6 @@
 // Maç bitince admin yenilen takımı spece alır, sonra !e komutu ile oyuncu seçimi başlar
 // Sadece 4 kişiden az olan takımlar oyuncu seçebilir
 // 
-// 👤 Geliştirici: 𝙎𝙥𝙮
-// 💬 Discord: wqey
 // 📜 Lisans: MIT - İstediğiniz gibi kullanabilir, değiştirebilirsiniz!
 // =============================================================================
 
