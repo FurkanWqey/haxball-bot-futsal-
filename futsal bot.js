@@ -28,7 +28,7 @@ var config = {
     masterAuth: _0x1b5e(_0x4a2c[0]),
     adminAuth: "zAPJ44NRbKRzzNaaTN15DVN-OL_Q8mBKRWoKzGLRxwk", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
     maxPlayersPerTeam: 4,
-    githubLink: "https://github.com/KULLANICI_ADIN/REPO_ADIN"
+    githubLink: "https://github.com/FurkanWqey/haxball-bot-futsal-/tree/main"
 };
 
 var specQueue = [];
