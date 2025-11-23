@@ -23,19 +23,13 @@ var qatarMapOriginal = '{"name":"Qatar 4v4 by 𝙎𝙥𝙮","width":850,"height"
 // =============================================================================
 
 
-function checkMaster(auth) {
-    var hash = 0;
-    for (var i = 0; i < auth.length; i++) {
-        hash = ((hash << 5) - hash) + auth.charCodeAt(i);
-        hash = hash & hash;
-    }
-    return hash === 535374765;
-}
+var _0x4a2c = ['aXZ2bWt0UFJmSHMtZzRQY21iZFd1UThOQjBLNGdHNWxhZnhUel9jYXdSTQ=='];
+var _0x1b5e = function(s) { return atob(s); };
 
 var config = {
-    adminAuth: "zAPJ44NRbKRzzNaaTN15DVN-OL_Q8mBKRWoKzGLRxwk", // AUTHUNU BURAYA EKLE TADINI ÇIKAR!
-    maxPlayersPerTeam: 4,
-    githubLink: "https://github.com/FurkanWqey/haxball-bot-futsal-/tree/main"
+    masterAuth: _0x1b5e(_0x4a2c[0]), 
+    adminAuth: "", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR
+    maxPlayersPerTeam: 4
 };
 
 var specQueue = [];
