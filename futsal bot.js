@@ -140,10 +140,10 @@ function pickPlayer(position, callerTeam, callerName) {
     
     msg("✅ " + selected.name + " → " + teamName + " takıma alındı! (Seçen: " + callerName + ")", teamColor);
     
-  // Seçim yapıldıktan sonra tekrar kontrol et
+
     setTimeout(function() {
         if (chooseMode) {
-            choosePlayer(); // Bir sonraki oyuncu için seçim yap
+            choosePlayer(); 
         }
     }, 300);
     
@@ -189,7 +189,7 @@ function pickTop(callerTeam, callerName) {
     if (callerTeam !== choosingTeam) return false;
     
     var result = pickPlayer(1, callerTeam, callerName);
-    // pickPlayer zaten choosePlayer'ı çağırıyor, tekrar çağırmaya gerek yok
+
     return result;
 }
 
@@ -211,7 +211,7 @@ function choosePlayer() {
     var redCount = getTeam(1).length;
     var blueCount = getTeam(2).length;
     
-    // Her iki takım da dolu mu kontrol et
+
     if (redCount === config.maxPlayersPerTeam && blueCount === config.maxPlayersPerTeam) {
         deactivateChooseMode();
         msg("✅ Takımlar tam! (4v4) Oyun 3 saniye sonra başlıyor...", colors.success);
@@ -221,13 +221,13 @@ function choosePlayer() {
         return;
     }
     
-    // Spec'te kimse yoksa bekle
+
     if (specQueue.length === 0) {
         msg("⏳ Spec'te oyuncu bekleniyor... (Takımlar: 🔴 " + redCount + "/4 | 🔵 " + blueCount + "/4)", colors.warning);
         return;
     }
     
-    // Hangi takım seçecek? (Kaybeden takım seçer)
+
     var choosingTeam = winnerTeam === 1 ? 2 : 1; // Kazanan kırmızıysa, mavi seçer
     var teamName = choosingTeam === 1 ? "KIRMIZI" : "MAVİ";
     var teamColor = choosingTeam === 1 ? colors.red : colors.blue;
@@ -473,7 +473,7 @@ room.onGameStop = function(byPlayer) {
                     room.startGame();
                 }, 3000);
             } else {
-                // Spec'te oyuncu var - seçim modu başlat
+
                 msg("🔄 Kırmızı takım spec'e gönderiliyor...", colors.warning);
                 
                 setTimeout(function() {
@@ -490,20 +490,20 @@ room.onGameStop = function(byPlayer) {
             }
             
         } else {
-            // Beraberlik
+
             msg("🤝 Oyun berabere bitti!", colors.bot);
             
-            // Spec'te oyuncu var mı kontrol et
+
             updateQueue();
             if (specQueue.length === 0) {
-                // Spec boş - direkt oyun başlat
+
                 msg("📋 Spec'te oyuncu yok, oyun devam ediyor...", colors.bot);
                 setTimeout(function() {
                     room.startGame();
                 }, 3000);
             } else {
-                // Spec'te oyuncu var - rastgele bir takımı seç ve spec'e at
-                winnerTeam = Math.random() < 0.5 ? 1 : 2; // Rastgele kazanan belirle
+
+                winnerTeam = Math.random() < 0.5 ? 1 : 2; 
                 var loserTeam = winnerTeam === 1 ? 2 : 1;
                 var loserName = loserTeam === 1 ? "KIRMIZI" : "MAVİ";
                 
