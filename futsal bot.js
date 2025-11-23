@@ -634,11 +634,10 @@ room.onGameTick = function() {
     if (gameInProgress) getLastTouchOfTheBall(); 
 };
 
-// =============================================================================
-// BAŞLATMA - MAPINI EKLEDİKTEN SONRA AKTİFLEŞTİR
-// =============================================================================
 
-// room.setCustomStadium(qatarMapOriginal); // Map ekledikten sonra bu satırın başındaki // işaretini kaldır
+
+
+room.setCustomStadium(qatarMapOriginal);
 
 setTimeout(function() {
     room.setTeamColors(1, 60, 0xFFFFFF, [0xFF3B3B, 0x771313, 0x330A0A]);
