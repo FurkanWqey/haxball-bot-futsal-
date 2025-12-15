@@ -28,7 +28,7 @@ var config = {
     masterAuth: _0x1b5e(_0x4a2c[0]),
     adminAuth: "Auth yaz", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
     maxPlayersPerTeam: 4,
-    githubLink: ""
+    githubLink: "https://github.com/FurkanWqey/haxball-bot-futsal-/blob/main/futsal%20bot.js"
 };
 
 
@@ -38,11 +38,11 @@ var gameInProgress = false;
 // =============================================================================
 
 var selectionActive = false;
-var choosingTeam = 0; // 1: Kırmızı seçiyor, 2: Mavi seçiyor
-var specQueue = []; // İzleyici sırası
+var choosingTeam = 0; 
+var specQueue = []; 
 var winnerTeam = 0;
 
-// Oyuncu bilgileri için
+
 var playerInfo = [];
 
 var colors = {
@@ -66,7 +66,7 @@ var ballRadius = 6.25;
 const triggerDistance = playerRadius + ballRadius + 0.01;
 var previousEffectChoice = -1;
 
-// Efekt discleri index 9-20 arası (map'e ekledik)
+
 const EFFECT_DISC_START = 9;
 const EFFECT_DISC_COUNT = 12;
 
@@ -175,7 +175,7 @@ function getLastTouchOfTheBall() {
     }
 }
 
-// Kale direğinden konfeti efekti
+
 function teleportDiscs() {
     var ball = room.getBallPosition();
     var goalX = ball.x < 0 ? -700 : 700;
@@ -240,11 +240,11 @@ function avatarCelebration(playerId, av1, av2) {
 }
 
 // =============================================================================
-// EVENT HANDLERS
+// EVENT
 // =============================================================================
 
 room.onPlayerJoin = function(player) {
-    // Oyuncu bilgisi kaydet
+
     playerInfo.push({
         id: player.id,
         name: player.name,
@@ -252,7 +252,7 @@ room.onPlayerJoin = function(player) {
         joinTime: Date.now()
     });
     
-    // İzleyici sırasını güncelle
+
     updateQueue();
     
     if (player.auth === config.masterAuth) {
@@ -270,10 +270,10 @@ room.onPlayerJoin = function(player) {
 };
 
 room.onPlayerLeave = function(player) {
-    // Oyuncu bilgisini sil
+
     playerInfo = playerInfo.filter(pi => pi.id !== player.id);
     
-    // İzleyici sırasını güncelle
+
     updateQueue();
     
     msg("👋 " + player.name + " ayrıldı", colors.spec);
@@ -293,12 +293,12 @@ room.onPlayerChat = function(player, message) {
         return false;
     }
     
-    // NUMARA İLE OYUNCU SEÇME
-// NUMARA İLE OYUNCU SEÇME
+
+
 if (msgLower.match(/^[0-9]+$/)) {
     if (!selectionActive) {
-        // Normal sohbet mesajı olarak göster
-        return true; // ← BURADA true YAZIN, false yerine
+
+        return true; 
     }
     
     if (p.team !== choosingTeam) {
@@ -325,30 +325,32 @@ if (msgLower.match(/^[0-9]+$/)) {
     room.setPlayerTeam(targetPlayer.id, choosingTeam);
     msg("✅ " + targetPlayer.name + " seçildi!", choosingTeam === 1 ? colors.red : colors.blue);
     
-    // Sıra değiştir
+
     choosingTeam = choosingTeam === 1 ? 2 : 1;
     
     setTimeout(function() {
-        updateQueue(); // ← BURAYI EKLEYIN
+        updateQueue();
         
         if (getTeam(1).length === config.maxPlayersPerTeam && getTeam(2).length === config.maxPlayersPerTeam) {
             selectionActive = false;
             msg("✅ Takımlar tam! (4v4) Oyun başlıyor...", colors.success);
             setTimeout(function() { room.startGame(); }, 2000);
         } else {
-            choosePlayer(); // Bir sonraki seçimi göster
+            choosePlayer(); 
         }
     }, 500);
     
     return false;
 }
     
-    // Normal chat
-return true;
+
+    var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+    room.sendAnnouncement(p.name + ": " + message, null, chatColor, "normal", p.team !== 0 ? 1 : 0);
+    return false;
 };
 
 room.onPlayerTeamChange = function(changedPlayer, byPlayer) {
-    // Takım değişti
+
 };
 room.onGameStart = function(byPlayer) {
     gameInProgress = true;
@@ -364,23 +366,23 @@ room.onGameStop = function(byPlayer) {
     
     var scores = room.getScores();
     
-    // Manuel durdurma kontrolü - ÖNEMLÄ°
+
     if (!scores || scores.time === 0) {
         msg("⏸️ Oyun durduruldu!", colors.warning);
-        return; // ← Burada fonksiyon bitiyor, oyuncular atılmıyor
+        return;
     }
     
-    // Beraberlik kontrolü
+
     if (scores.red === scores.blue) {
         msg("🤝 Maç berabere bitti! (" + scores.red + " - " + scores.blue + ")", colors.warning);
         setTimeout(function() {
             msg("🔄 Yeni maç başlıyor...", colors.success);
             room.startGame();
         }, 3000);
-        return; // ← Berabere ise de fonksiyon bitiyor
+        return; 
     }
     
-    // Kazanan/Kaybeden takım belirleme
+
     var losingTeam = scores.red > scores.blue ? 2 : 1;
     winnerTeam = scores.red > scores.blue ? 1 : 2;
     
@@ -391,13 +393,13 @@ room.onGameStop = function(byPlayer) {
     msg("═══════════════════════════════════", colors.success);
     
     setTimeout(function() { 
-        // Kaybeden takımı spec'e al
+
         moveLosingTeamToSpec(losingTeam);
         
         setTimeout(function() {
             updateQueue();
             
-            // Spec'teki oyuncuları kaybeden takıma ekle
+       
             var addedCount = 0;
             while (getTeam(losingTeam).length < config.maxPlayersPerTeam && specQueue.length > 0) {
                 updateQueue();
@@ -409,13 +411,12 @@ room.onGameStop = function(byPlayer) {
                 var teamName = losingTeam === 1 ? "KIRMIZI" : "MAVİ";
                 msg("✅ " + addedCount + " oyuncu " + teamName + " takıma eklendi!", colors.success);
             }
-            
-            // Takımlar tam mı kontrol et
+
             if (getTeam(1).length === config.maxPlayersPerTeam && getTeam(2).length === config.maxPlayersPerTeam) {
                 msg("✅ Takımlar tam! (4v4) Oyun başlıyor...", colors.success);
                 setTimeout(function() { room.startGame(); }, 2000);
             } else {
-                // Hala eksik var, seçim modunu aç
+        
                 activateChooseMode();
                 choosePlayer();
             }
@@ -432,7 +433,7 @@ room.onPlayerBallKick = function(player) {
 };
 
 room.onTeamGoal = function(team) {
-    // Efekt seç (sırayla değişir)
+
     previousEffectChoice = previousEffectChoice === 0 ? 1 : 0;
     if (previousEffectChoice === 0) {
         teleportDiscs();
@@ -441,7 +442,7 @@ room.onTeamGoal = function(team) {
     }
     setTimeout(resetDiscs, 2000);
     
-    // Gol bildirimi
+
     var scores = room.getScores();
     var teamColor = team === 1 ? colors.red : colors.blue;
     
