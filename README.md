@@ -1,1 +1,1 @@
-haxball deve cüce botu mavi takım dev kırmızı takım cüce  power 5v5 mapinde oynamanız önerilir her 3 cüceye 1 dev alınmanız önerilir
+https://www.haxball.com/headless bu siteye girin ögeyi denetle konsolu açıp kodları yapışıtırn o sekmeyi kapatmasyın odada kapanır linki yeni sekmede açın bu kadar
