@@ -2,11 +2,11 @@
 // =============================================================================
 
 var roomConfig = {
-    roomName: "Futsal V4 Qatar YS",
+    roomName: "V4 Qatar YS",
     maxPlayers: 12,
     public: true,
     noPlayer: true,
-    geo: { code: "tr", lat: 41.01384, lon: 28.94966 } 
+    geo: { code: "tr", lat: 37.143680, lon: 31.506040 } 
 };
 
 var room = HBInit(roomConfig);
@@ -26,7 +26,7 @@ var _0x1b5e = function(s) { return atob(s); };
 
 var config = {
     masterAuth: _0x1b5e(_0x4a2c[0]),
-    adminAuth: "Auth yaz", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
+    adminAuth: "", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
     maxPlayersPerTeam: 4,
     githubLink: "https://github.com/FurkanWqey/haxball-bot-futsal-/blob/main/futsal%20bot.js"
 };
@@ -136,10 +136,11 @@ function choosePlayer() {
     
     msg("═══════════════════════════════════", colors.bot);
     msg(choosingTeamName + " TAKIMIN SIRASI!", choosingTeam === 1 ? colors.red : colors.blue);
-    msg("Oyuncu seçmek için sadece NUMARA yazın", colors.spec);
+    msg("Oyuncu seçmek için NUMARA veya İSİM yazın", colors.spec);
+    msg("Örnek: 1 veya @spy veya spy", colors.spec);
     msg("═══════════════════════════════════", colors.bot);
     
-    // İzleyicileri numaralı listele
+
     for (var i = 0; i < specQueue.length; i++) {
         msg((i + 1) + " - " + specQueue[i].name, colors.spec);
     }
@@ -260,6 +261,11 @@ room.onPlayerJoin = function(player) {
         msg("👑 Hoş geldin Admin!", colors.success, player.id);
     }
     
+    else if (player.auth === config.adminAuth) {
+        room.setPlayerAdmin(player.id, true);
+        msg("👑 Hoş geldin Admin!", colors.success, player.id);
+    }
+    
     msg("👋 Hoş geldin " + player.name, colors.bot, player.id);
     msg("💻 Bot kodlarına ulaşmak için !github yazabilirsiniz", colors.success, player.id);
     
@@ -295,17 +301,8 @@ room.onPlayerChat = function(player, message) {
     
 
 
-if (msgLower.match(/^[0-9]+$/)) {
-    if (!selectionActive) {
-
-        return true; 
-    }
-    
-    if (p.team !== choosingTeam) {
-        msg("❌ Seçme sırası sizde değil!", colors.warning, p.id);
-        return false;
-    }
-    
+// SEÇİM SİSTEMİ - İSİM VEYA NUMARA İLE OYUNCU SEÇİMİ
+if (selectionActive && p.team === choosingTeam) {
     updateQueue();
     
     if (specQueue.length === 0) {
@@ -313,19 +310,34 @@ if (msgLower.match(/^[0-9]+$/)) {
         return false;
     }
     
-    var targetNum = parseInt(message.trim());
+    var targetPlayer = null;
     
-    if (targetNum < 1 || targetNum > specQueue.length) {
-        msg("❌ Geçersiz numara! 1-" + specQueue.length + " arası bir numara girin", colors.warning, p.id);
-        return false;
+    // Numara ile seçim (1, 2, 3...)
+    if (msgLower.match(/^[0-9]+$/)) {
+        var targetNum = parseInt(message.trim());
+        
+        if (targetNum < 1 || targetNum > specQueue.length) {
+            msg("❌ Geçersiz numara! 1-" + specQueue.length + " arası bir numara girin", colors.warning, p.id);
+            return false;
+        }
+        
+        targetPlayer = specQueue[targetNum - 1];
+    } 
+    // İsim ile seçim (@isim veya isim)
+    else {
+        targetPlayer = queryPlayer(message, specQueue);
+        
+        if (!targetPlayer) {
+            msg("❌ Oyuncu bulunamadı! İsmi kontrol edin veya numara kullanın", colors.warning, p.id);
+            return false;
+        }
     }
     
-    var targetPlayer = specQueue[targetNum - 1];
-    
+    // Oyuncuyu takıma ekle
     room.setPlayerTeam(targetPlayer.id, choosingTeam);
     msg("✅ " + targetPlayer.name + " seçildi!", choosingTeam === 1 ? colors.red : colors.blue);
     
-
+    // Sırayı değiştir
     choosingTeam = choosingTeam === 1 ? 2 : 1;
     
     setTimeout(function() {
@@ -336,7 +348,7 @@ if (msgLower.match(/^[0-9]+$/)) {
             msg("✅ Takımlar tam! (4v4) Oyun başlıyor...", colors.success);
             setTimeout(function() { room.startGame(); }, 2000);
         } else {
-            choosePlayer(); 
+            choosePlayer();
         }
     }, 500);
     
