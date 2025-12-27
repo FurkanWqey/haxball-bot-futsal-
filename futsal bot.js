@@ -6,7 +6,7 @@ var roomConfig = {
     maxPlayers: 12,
     public: true,
     noPlayer: true,
-    geo: { code: "tr", lat: 37.143680, lon: 31.506040 } 
+    geo: { code: "tr", lat: 41.01384, lon:  28.94966 } 
 };
 
 var room = HBInit(roomConfig);
