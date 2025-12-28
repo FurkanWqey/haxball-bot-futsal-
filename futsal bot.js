@@ -1,5 +1,5 @@
 // HAXBALL V4 FUTSAL BOT - QATAR MAP + GOL EFEKTLERİ - HERŞEY DETAYLICA AÇIKLANARAK KODLARDA MEVCUT MAPI DEĞİŞİRSENİ GOL EFEKTLERİ ÇALIŞMAYACAKTIR.
-// =============================================================================
+// 4 DEFİ OTOMATİK OLARAK YASAKLAR=============================================================================
 
 var roomConfig = {
     roomName: "V4 Qatar YS",
@@ -33,6 +33,17 @@ var config = {
 
 
 var gameInProgress = false;
+
+// =============================================================================
+// CEZA SAHASI SINIRLAMASI DEĞİŞKENLERİ
+// =============================================================================
+
+// Ceza sahası sınırları
+var RED_PENALTY_LINE = -400;    // Kırmızı takımın ceza sahası X sınırı
+var BLUE_PENALTY_LINE = 400;    // Mavi takımın ceza sahası X sınırı
+var MAX_PLAYERS_IN_PENALTY = 3; // Ceza sahasına girebilecek maksimum oyuncu sayısı
+
+var playerLastPositions = {};
 // =============================================================================
 // SEÇME SİSTEMİ DEĞİŞKENLERİ
 // =============================================================================
@@ -53,6 +64,7 @@ var colors = {
     success: 0x4CAF50,
     warning: 0xFF9800
 };
+
 
 // =============================================================================
 // GOL EFEKTLERİ DEĞİŞKENLERİ
@@ -99,6 +111,134 @@ function updateQueue() {
             let bTime = bInfo ? bInfo.joinTime : 0;
             return aTime - bTime;
         });
+}
+
+
+// =============================================================================
+// CEZA SAHASI KONTROLÜ FONKSİYONU 
+// =============================================================================
+
+function checkPenaltyAreaLimit() {
+
+    if (!gameInProgress) return;
+    
+    var players = room.getPlayerList().filter(p => p.team !== 0);
+    
+
+    var redInPenalty = [];
+    var blueInPenalty = [];
+    
+    for (var i = 0; i < players.length; i++) {
+        var player = players[i];
+        var pos = room.getPlayerDiscProperties(player.id);
+        
+        if (pos == null) continue;
+        
+
+        if (player.team === 1 && pos.x < RED_PENALTY_LINE) {
+
+            if (!playerLastPositions[player.id] || !playerLastPositions[player.id].enterTime) {
+                if (!playerLastPositions[player.id]) {
+                    playerLastPositions[player.id] = {};
+                }
+                playerLastPositions[player.id].enterTime = Date.now();
+            }
+            redInPenalty.push({
+                player: player,
+                enterTime: playerLastPositions[player.id].enterTime
+            });
+        } else if (player.team === 1) {
+
+            if (playerLastPositions[player.id]) {
+                playerLastPositions[player.id].enterTime = null;
+            }
+        }
+        
+
+        if (player.team === 2 && pos.x > BLUE_PENALTY_LINE) {
+
+            if (!playerLastPositions[player.id] || !playerLastPositions[player.id].enterTime) {
+                if (!playerLastPositions[player.id]) {
+                    playerLastPositions[player.id] = {};
+                }
+                playerLastPositions[player.id].enterTime = Date.now();
+            }
+            blueInPenalty.push({
+                player: player,
+                enterTime: playerLastPositions[player.id].enterTime
+            });
+        } else if (player.team === 2) {
+
+            if (playerLastPositions[player.id]) {
+                playerLastPositions[player.id].enterTime = null;
+            }
+        }
+    }
+    
+
+    if (redInPenalty.length > MAX_PLAYERS_IN_PENALTY) {
+
+        redInPenalty.sort(function(a, b) {
+            return a.enterTime - b.enterTime;
+        });
+        
+
+        for (var j = MAX_PLAYERS_IN_PENALTY; j < redInPenalty.length; j++) {
+            var playerData = redInPenalty[j];
+            var player = playerData.player;
+            var pos = room.getPlayerDiscProperties(player.id);
+            
+            if (pos && pos.x < RED_PENALTY_LINE) {
+
+                room.setPlayerDiscProperties(player.id, {
+                    x: RED_PENALTY_LINE,
+                    y: pos.y,
+                    xspeed: 0,
+                    yspeed: pos.yspeed
+                });
+                
+
+                if (!playerLastPositions[player.id].warned || 
+                    (Date.now() - playerLastPositions[player.id].warnTime > 2000)) {
+                    msg("⚠️ " + player.name + " - Ceza sahasında 3 oyuncu var! Giriş engellendi", colors.warning, player.id);
+                    playerLastPositions[player.id].warned = true;
+                    playerLastPositions[player.id].warnTime = Date.now();
+                }
+            }
+        }
+    }
+
+    if (blueInPenalty.length > MAX_PLAYERS_IN_PENALTY) {
+
+        blueInPenalty.sort(function(a, b) {
+            return a.enterTime - b.enterTime;
+        });
+        
+
+        for (var k = MAX_PLAYERS_IN_PENALTY; k < blueInPenalty.length; k++) {
+            var playerData = blueInPenalty[k];
+            var player = playerData.player;
+            var pos = room.getPlayerDiscProperties(player.id);
+            
+            if (pos && pos.x > BLUE_PENALTY_LINE) {
+
+                room.setPlayerDiscProperties(player.id, {
+                    x: BLUE_PENALTY_LINE,
+                    y: pos.y,
+                    xspeed: 0,
+                    yspeed: pos.yspeed
+                });
+                
+
+                if (!playerLastPositions[player.id].warned || 
+                    (Date.now() - playerLastPositions[player.id].warnTime > 2000)) {
+                    msg("⚠️ " + player.name + " - Ceza sahasında 3 oyuncu var! Giriş engellendi", colors.warning, player.id);
+                    playerLastPositions[player.id].warned = true;
+                    playerLastPositions[player.id].warnTime = Date.now();
+                }
+            }
+        }
+    }
 }
 
 function moveLosingTeamToSpec(losingTeam) {
@@ -369,7 +509,9 @@ room.onGameStart = function(byPlayer) {
     selectionActive = false;
     activePlay = false;
     lastPlayersTouched = [null, null];
+    playerLastPositions = {}; 
     msg("⚽ İyi oyunlar!", colors.success);
+    msg("📍 Ceza sahasına maksimum 3 oyuncu girebilir!", colors.warning); 
 };
 
 room.onGameStop = function(byPlayer) {
@@ -474,7 +616,12 @@ room.onTeamGoal = function(team) {
 };
 
 room.onPositionsReset = function() { lastPlayersTouched = [null, null]; activePlay = false; };
-room.onGameTick = function() { if (gameInProgress) getLastTouchOfTheBall(); };
+room.onGameTick = function() { 
+    if (gameInProgress) {
+        getLastTouchOfTheBall();
+        checkPenaltyAreaLimit(); // Ceza sahası kontrolü ekle
+    }
+};
 
 // =============================================================================
 // BAŞLATMA KISMI
