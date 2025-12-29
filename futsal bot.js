@@ -1,5 +1,5 @@
 // HAXBALL V4 FUTSAL BOT - QATAR MAP + GOL EFEKTLERİ - HERŞEY DETAYLICA AÇIKLANARAK KODLARDA MEVCUT MAPI DEĞİŞİRSENİ GOL EFEKTLERİ ÇALIŞMAYACAKTIR.
-// 4 DEFİ OTOMATİK OLARAK YASAKLAR=============================================================================
+// =============================================================================
 
 var roomConfig = {
     roomName: "V4 Qatar YS",
@@ -35,6 +35,38 @@ var config = {
 var gameInProgress = false;
 
 // =============================================================================
+// KISALTMA SİSTEMİ
+// =============================================================================
+
+var shortcuts = {
+    'gg': '👏 İyi oyundu',
+    'wp': '✨ İyi oynadın',
+    'ggwp': '⚽ İyi oyundu, iyi oynadın',
+    'gl': '🍀 İyi şanslar',
+    'hf': '🎮 İyi eğlenceler',
+    'ez': '😎 Kolaydı',
+    'nt': '💪 Güzel denemeydi',
+    'ns': '🎯 Güzel atış',
+    'ty': '🙏 Teşekkürler',
+    'tyvm': '🙏 Çok teşekkürler',
+    'np': '😊 Sorun değil',
+    'wb': '👋 Tekrar hoş geldin',
+    'brb': '⏰ Hemen geliyorum',
+    'gk': '🧤 Kaleci',
+    'def': '🛡️ Defans',
+    'mid': '⚙️ Orta saha',
+    'att': '⚔️ Atak',
+    'afk': '💤 Klavyeden uzakta',
+    'bb': '👋 Bay bay',
+    'thx': '🙏 Sağol',
+    'omg': '😱 Aman Tanrım',
+    'lol': '😂 Çok komik',
+    'wtf': '😳 Ne oluyor',
+    'sry': '🙇 Özür dilerim',
+    'lag': '📶 İnternet yavaş'
+};
+
+// =============================================================================
 // CEZA SAHASI SINIRLAMASI DEĞİŞKENLERİ
 // =============================================================================
 
@@ -44,6 +76,8 @@ var BLUE_PENALTY_LINE = 400;    // Mavi takımın ceza sahası X sınırı
 var MAX_PLAYERS_IN_PENALTY = 3; // Ceza sahasına girebilecek maksimum oyuncu sayısı
 
 var playerLastPositions = {};
+
+
 // =============================================================================
 // SEÇME SİSTEMİ DEĞİŞKENLERİ
 // =============================================================================
@@ -57,14 +91,13 @@ var winnerTeam = 0;
 var playerInfo = [];
 
 var colors = {
-    spec: 0x9CA3AF,
+    spec: 0xAEAEAE,//0x9CA3AF,
     red: 0xFF3B3B,
-    blue: 0x0080FF,
+    blue: 0x369BFF, //0x0080FF,
     bot: 0xFFC107,
     success: 0x4CAF50,
     warning: 0xFF9800
 };
-
 
 // =============================================================================
 // GOL EFEKTLERİ DEĞİŞKENLERİ
@@ -429,6 +462,19 @@ room.onPlayerChat = function(player, message) {
     var p = room.getPlayer(player.id);
     if (!p) return false;
     var msgLower = message.toLowerCase().trim();
+
+    // KISALTMA KONTROLÜ
+    if (shortcuts[msgLower]) {
+        var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+        room.sendAnnouncement(
+            p.name + ": " + shortcuts[msgLower], 
+            null, 
+            chatColor, 
+            "bold", 
+            p.team !== 0 ? 1 : 0
+        );
+        return false;
+    }
     
     // GitHub linki
     if (msgLower === "!github" || msgLower === "github") {
@@ -439,6 +485,14 @@ room.onPlayerChat = function(player, message) {
         return false;
     }
     
+
+// Kısaltmalar listesi
+if (msgLower === "!kısa" || msgLower === "!kısaltmalar" || msgLower === "!kisaltmalar") {
+    msg("📝 KISALTMALAR", colors.bot, p.id);
+    msg("GG (İyi oyun) • WP (İyi oynadın) • GGWP (İyi oyun,iyi oynadın) • GL (İyi şanslar) • HF (İyi eğlenceler) • EZ (Kolaydı) • NT (Güzel deneme) • NS (Güzel atış) • TY (Teşekkürler) • TYVM (Çok teşekkürler)", colors.spec, p.id);
+    msg("NP (Sorun değil) • WB (Hoş geldin) • BRB (Hemen geliyorum) • AFK (Uzakta) • BB (Bay) • THX (Sağol) • OMG (Aman Tanrım) • LOL (Komik) • SRY (Özür) • LAG (İnternet yavaş)", colors.spec, p.id);
+    return false;
+}
 
 
 // SEÇİM SİSTEMİ - İSİM VEYA NUMARA İLE OYUNCU SEÇİMİ
@@ -619,7 +673,7 @@ room.onPositionsReset = function() { lastPlayersTouched = [null, null]; activePl
 room.onGameTick = function() { 
     if (gameInProgress) {
         getLastTouchOfTheBall();
-        checkPenaltyAreaLimit(); // Ceza sahası kontrolü ekle
+        checkPenaltyAreaLimit(); 
     }
 };
 
