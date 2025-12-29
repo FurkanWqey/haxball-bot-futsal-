@@ -3,6 +3,7 @@
 // BOT OTOMATİK OLARAK 4 DEFANSI ENGELLER 
 // HERŞEY DETAYLICA AÇIKLANARAK KODLARDA MEVCUT MAPI DEĞİŞİRSENİ GOL EFEKTLERİ ÇALIŞMAYACAKTIR.
 // =============================================================================
+
 var roomConfig = {
     roomName: "V4 Qatar YS",
     maxPlayers: 12,
@@ -41,31 +42,23 @@ var gameInProgress = false;
 // =============================================================================
 
 var shortcuts = {
-    'gg': '👏 İyi oyundu',
-    'wp': '✨ İyi oynadın',
-    'ggwp': '⚽ İyi oyundu, iyi oynadın',
-    'gl': '🍀 İyi şanslar',
-    'hf': '🎮 İyi eğlenceler',
-    'ez': '😎 Kolaydı',
-    'nt': '💪 Güzel denemeydi',
-    'ns': '🎯 Güzel atış',
-    'ty': '🙏 Teşekkürler',
-    'tyvm': '🙏 Çok teşekkürler',
-    'np': '😊 Sorun değil',
-    'wb': '👋 Tekrar hoş geldin',
-    'brb': '⏰ Hemen geliyorum',
-    'gk': '🧤 Kaleci',
-    'def': '🛡️ Defans',
-    'mid': '⚙️ Orta saha',
-    'att': '⚔️ Atak',
-    'mb': '💤 Benim hatamdı',
-    'bb': '👋 Bay bay',
-    'thx': '🙏 Sağol',
-    'omg': '😱 Aman Tanrım',
-    'lol': '😂 Çok komik',
-    'wtf': '😳 Ne oluyor',
-    'mbb': '🙇 Özür dilerim',
-    'es': '😶‍🌫️ Eline sağlık',
+    'gg': 'İyi oyundu',
+    'wp': 'İyi oynadın',
+    'ggwp': 'İyi oyundu, iyi oynadın',
+    'gl': 'İyi şanslar',
+    'ig': 'İyi günler',
+    'ez': 'Kolaydı',
+    'nt': 'Güzel denemeydi',
+    'ns': 'Güzel atış',
+    'ty': 'Teşekkürler',
+    'tyvm': 'Çok teşekkürler',
+    'np': 'Sorun değil',
+    'mb': 'Benim hatamdı',
+    'bb': 'Bay bay',
+    'thx': 'Sağol',
+    'wtf': 'Ne oluyor',
+    'mbb': 'Özür dilerim',
+    'es': 'Eline sağlık',
         'sa': 'Selamun aleyküm',
             'as': 'Aleyküm selam',
 };
@@ -489,15 +482,6 @@ room.onPlayerChat = function(player, message) {
         return false;
     }
     
-
-// Kısaltmalar listesi
-if (msgLower === "!kısa" || msgLower === "!kısaltmalar" || msgLower === "!kisaltmalar") {
-    msg("📝 KISALTMALAR", colors.bot, p.id);
-    msg("GG (İyi oyun) • WP (İyi oynadın) • GGWP (İyi oyun,iyi oynadın) • GL (İyi şanslar) • HF (İyi eğlenceler) • EZ (Kolaydı) • NT (Güzel deneme) • NS (Güzel atış) • TY (Teşekkürler) • TYVM (Çok teşekkürler)", colors.spec, p.id);
-    msg("NP (Sorun değil) • WB (Hoş geldin) • BRB (Hemen geliyorum) • AFK (Uzakta) • BB (Bay) • THX (Sağol) • OMG (Aman Tanrım) • LOL (Komik) • SRY (Özür) • MB (Benim hatamdı)", colors.spec, p.id);
-    return false;
-}
-
 
 // SEÇİM SİSTEMİ - İSİM VEYA NUMARA İLE OYUNCU SEÇİMİ
 if (selectionActive && p.team === choosingTeam) {
