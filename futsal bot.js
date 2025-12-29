@@ -3,7 +3,6 @@
 // BOT OTOMATİK OLARAK 4 DEFANSI ENGELLER 
 // HERŞEY DETAYLICA AÇIKLANARAK KODLARDA MEVCUT MAPI DEĞİŞİRSENİ GOL EFEKTLERİ ÇALIŞMAYACAKTIR.
 // =============================================================================
-
 var roomConfig = {
     roomName: "V4 Qatar YS",
     maxPlayers: 12,
@@ -59,14 +58,16 @@ var shortcuts = {
     'def': '🛡️ Defans',
     'mid': '⚙️ Orta saha',
     'att': '⚔️ Atak',
-    'afk': '💤 Klavyeden uzakta',
+    'mb': '💤 Benim hatamdı',
     'bb': '👋 Bay bay',
     'thx': '🙏 Sağol',
     'omg': '😱 Aman Tanrım',
     'lol': '😂 Çok komik',
     'wtf': '😳 Ne oluyor',
-    'sry': '🙇 Özür dilerim',
-    'lag': '📶 İnternet yavaş'
+    'mbb': '🙇 Özür dilerim',
+    'es': '😶‍🌫️ Eline sağlık',
+        'sa': 'Selamun aleyküm',
+            'as': 'Aleyküm selam',
 };
 
 // =============================================================================
@@ -493,7 +494,7 @@ room.onPlayerChat = function(player, message) {
 if (msgLower === "!kısa" || msgLower === "!kısaltmalar" || msgLower === "!kisaltmalar") {
     msg("📝 KISALTMALAR", colors.bot, p.id);
     msg("GG (İyi oyun) • WP (İyi oynadın) • GGWP (İyi oyun,iyi oynadın) • GL (İyi şanslar) • HF (İyi eğlenceler) • EZ (Kolaydı) • NT (Güzel deneme) • NS (Güzel atış) • TY (Teşekkürler) • TYVM (Çok teşekkürler)", colors.spec, p.id);
-    msg("NP (Sorun değil) • WB (Hoş geldin) • BRB (Hemen geliyorum) • AFK (Uzakta) • BB (Bay) • THX (Sağol) • OMG (Aman Tanrım) • LOL (Komik) • SRY (Özür) • LAG (İnternet yavaş)", colors.spec, p.id);
+    msg("NP (Sorun değil) • WB (Hoş geldin) • BRB (Hemen geliyorum) • AFK (Uzakta) • BB (Bay) • THX (Sağol) • OMG (Aman Tanrım) • LOL (Komik) • SRY (Özür) • MB (Benim hatamdı)", colors.spec, p.id);
     return false;
 }
 
