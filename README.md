@@ -1,5 +1,5 @@
-https://www.haxball.com/headless bu siteye girin ögeyi denetle konsolu açıp kodları yapışıtırn o sekmeyi kapatmasyın odada kapanır linki yeni sekmede açın bu kadar
-SPECDEKİLER SESSİZ BİLDİRİM GÖNDERMEDEN YAZAR BÖYLECE KALİTELİ BİR OYUN DENEYİMİ SUNAR
-GOL ATINCA TATLI EFEKTLER ÇIKAR
-TAKIMLAR KENDİ RENGİNDE YAZAR
-BOT OTOMATİK OLARAK 4 DEFANSI ENGELLER 
+https://www.haxball.com/headless bu siteye girin ögeyi denetle konsolu açıp kodları yapışıtırn o sekmeyi kapatmasyın odada kapanır linki yeni sekmede açın bu kadarㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+SPECDEKİLER SESSİZ BİLDİRİM GÖNDERMEDEN YAZAR BÖYLECE KALİTELİ BİR OYUN DENEYİMİ SUNARㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+GOL ATINCA TATLI EFEKTLER ÇIKARㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+TAKIMLAR KENDİ RENGİNDE YAZARㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+BOT OTOMATİK OLARAK 4 DEFANSI ENGELLER ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤby 𝙎𝙥𝙮 ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤdiledğiniz gibi kullanabilirsiniz
