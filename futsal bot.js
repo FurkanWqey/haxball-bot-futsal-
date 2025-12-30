@@ -37,6 +37,11 @@ var config = {
 
 var gameInProgress = false;
 
+// Renkli top sistemi
+var rainbowBallActive = false;
+var ballColors = [0x0000FF, 0xFF0000, 0xFF69B4, 0x00FF00, 0xFFFF00, 0x000080, 0x000000];
+var currentColorIndex = 0;
+
 // =============================================================================
 // KISALTMA SİSTEMİ
 // =============================================================================
@@ -51,7 +56,7 @@ var shortcuts = {
     'nt': 'Güzel denemeydi',
     'ns': 'Güzel atış',
     'ty': 'Teşekkürler',
-    'tyvm': 'Çok teşekkürler',
+    'kg': 'Kolay Gelsin',
     'np': 'Sorun değil',
     'mb': 'Benim hatamdı',
     'bb': 'Bay bay',
@@ -89,8 +94,6 @@ var playerInfo = [];
 
 var colors = {
     spec: 0xAEAEAE,//0x9CA3AF,
-    red: 0xFF3B3B,
-    blue: 0x369BFF, //0x0080FF,
     bot: 0xFFC107,
     success: 0x4CAF50,
     warning: 0xFF9800
@@ -483,6 +486,28 @@ room.onPlayerChat = function(player, message) {
     }
     
 
+        // RGB komutu (sadece adminler)
+if (msgLower === "!rgb" || msgLower === "rgb") {
+    var isAdmin = room.getPlayer(player.id).admin;
+    
+    if (!isAdmin) {
+        return false; // Admin değilse hiçbir şey gösterme
+    }
+    
+    rainbowBallActive = !rainbowBallActive;
+    
+    if (rainbowBallActive) {
+        msg("🌈 Renkli top AÇIK", colors.success, player.id);
+    } else {
+        msg("⚪ Renkli top KAPALI", colors.warning, player.id);
+        // Topu beyaza döndür
+        room.setDiscProperties(0, { color: 0xFFFFFF });
+    }
+    
+    return false;
+}
+
+
 // SEÇİM SİSTEMİ - İSİM VEYA NUMARA İLE OYUNCU SEÇİMİ
 if (selectionActive && p.team === choosingTeam) {
     updateQueue();
@@ -620,6 +645,11 @@ room.onGameStop = function(byPlayer) {
     }, 2000);
 };
 room.onPlayerBallKick = function(player) {
+    // Top her vurulduğunda renk değiştir
+if (rainbowBallActive) {
+    currentColorIndex = Math.floor(Math.random() * ballColors.length);
+    room.setDiscProperties(0, { color: ballColors[currentColorIndex] });
+}
     activePlay = true;
     lastTeamTouched = player.team;
     if (lastPlayersTouched[0] == null || lastPlayersTouched[0].id != player.id) {
