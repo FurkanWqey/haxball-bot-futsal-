@@ -31,7 +31,7 @@ var config = {
     masterAuth: _0x1b5e(_0x4a2c[0]),
     adminAuth: ["auth 1", "admin auth 2"], // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
     maxPlayersPerTeam: 4,
-    githubLink: "https://github.com/FurkanWqey/haxball-bot-futsal-/blob/main/futsal%20bot.js"
+[atob("YmFiYUxpbms=")]: atob("aHR0cHM6Ly9naXRodWIuY29tL0Z1cmthbldxZXkvaGF4YmFsbC1ib3QtZnV0c2FsLS9ibG9iL21haW4vZnV0c2FsJTIwYm90Lmpz")
 };
 
 
@@ -495,12 +495,12 @@ if (shortcuts[msgLower]) {
     return false;
 }
     
-    // GitHub linki
-    if (msgLower === "!github" || msgLower === "github") {
-        msg("═══════════════════════════════════", colors.bot, p.id);
-        msg("📂 BOT KAYNAK KODU", colors.success, p.id);
-        msg("🔗 " + config.githubLink, 0x00FF00, p.id);
-        msg("═══════════════════════════════════", colors.bot, p.id);
+
+if (msgLower === atob("IWdpdGh1Yg==") || msgLower === atob("Z2l0aHVi")) {
+        msg(atob("PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09"), colors.bot, p.id);
+        msg(atob("8J+TgiBCT1QgS0FZTkFLIEtPRFU="), colors.success, p.id);
+        msg(atob("8J+UlyA=") + config.babaLink, 0x00FF00, p.id);
+        msg(atob("PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09"), colors.bot, p.id);
         return false;
     }
     
