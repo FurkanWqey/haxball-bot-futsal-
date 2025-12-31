@@ -1,0 +1,1810 @@
+// HAXBALL V4 FUTSAL BOT - QATAR MAP + GOL EFEKTLERİ -
+// BOT OTOMATİK OLARAK 4 DEFANSI ENGELLER 
+// BOT OTOMATİK OLARAK 4 DEFANSI ENGELLER 
+// HERŞEY DETAYLICA AÇIKLANARAK KODLARDA MEVCUT MAPI DEĞİŞİRSENİ GOL EFEKTLERİ ÇALIŞMAYACAKTIR.
+// =============================================================================
+
+var roomConfig = {
+    roomName: "V4 Qatar YS Bahis sistemi test !github ",
+    maxPlayers: 12,
+    public: true,
+    noPlayer: true,
+    geo: { code: "tr", lat: 41.01384, lon:  28.94966 } 
+};
+
+var room = HBInit(roomConfig);
+
+// =============================================================================
+// QATAR MAP - Spy tarafından efekt sistemi eklenerek güncellenmiştir
+// =============================================================================
+
+var qatarMapOriginal = '{"name":"Qatar 4v4 Gol efektli","width":850,"height":350,"spawnDistance":120,"bg":{"type":"hockey","height":0,"width":0,"color":"718C5A"},"canBeStored":true,"redSpawnPoints":[[-530,0],[-135,90],[-135,-90],[-285,0],[-765,0]],"blueSpawnPoints":[[530,0],[135,90],[135,-90],[285,0],[765,0]],"vertexes":[{"x":-700,"y":-321,"trait":"linha","color":"ECE1FF"},{"x":-700,"y":-90,"trait":"linha","color":"ECE1FF"},{"x":-700,"y":91,"trait":"linha","color":"ECE1FF"},{"x":-700,"y":321,"trait":"linha","color":"ECE1FF"},{"x":-701,"y":320,"trait":"linha","color":"111129"},{"x":701,"y":320,"trait":"linha","color":"111129"},{"x":700,"y":321,"trait":"linha","color":"ECE1FF"},{"x":700,"y":90,"trait":"linha","pos":[550,80],"color":"ECE1FF"},{"x":700,"y":-90,"trait":"linha","color":"ECE1FF"},{"x":700,"y":-321,"trait":"linha","color":"ECE1FF"},{"x":701,"y":-320,"trait":"linha","color":"111129"},{"x":-701,"y":-320,"trait":"linha","color":"111129"},{"x":-700,"y":-90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":-751,"y":-90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":-750,"y":-91,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":-750,"y":91,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":-751,"y":90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":-700,"y":90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":700,"y":90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","pos":[550,80],"color":"ECE1FF","bias":10},{"x":751,"y":90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":750,"y":91,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":750,"y":-91,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":751,"y":-90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":700,"y":-90,"bCoef":1.3,"cMask":["ball"],"trait":"rede","color":"ECE1FF","bias":10},{"x":1,"y":-320,"cMask":["red","blue"],"cGroup":["redKO","blueKO"],"color":"F1C40F","vis":false},{"x":1,"y":-90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":180,"color":"F1C40F"},{"x":1,"y":90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":180,"color":"F1C40F"},{"x":1,"y":320,"cMask":["red","blue"],"cGroup":["redKO","blueKO"],"color":"F1C40F","vis":false},{"x":-698,"y":-150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":-600,"y":-150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":-600,"y":150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":-698,"y":150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":698,"y":-90,"trait":"parede","bias":40},{"x":698,"y":-318,"trait":"parede","bias":40,"color":"969EA8"},{"x":-698,"y":-318,"trait":"parede","bias":40,"color":"ECE1FF"},{"x":-698,"y":-90,"trait":"parede","bias":40,"color":"ECE1FF"},{"x":-698,"y":91,"trait":"parede","bias":40},{"x":-698,"y":318,"trait":"parede","bias":40,"color":"111129"},{"x":698,"y":318,"trait":"parede","bias":40,"color":"111129"},{"x":698,"y":90,"trait":"parede","pos":[550,80],"bias":49},{"x":0,"y":-350,"cMask":["red","blue"],"cGroup":["redKO","blueKO"],"vis":false,"color":"969EA8"},{"x":0,"y":-318.5,"cMask":["red","blue"],"cGroup":["redKO","blueKO"],"vis":false,"color":"969EA8"},{"x":0,"y":350,"cMask":["red","blue"],"cGroup":["redKO","blueKO"],"vis":false,"color":"969EA8"},{"x":0,"y":318.5,"cMask":["red","blue"],"cGroup":["redKO","blueKO"],"vis":false,"color":"969EA8"},{"x":0,"y":-90,"trait":"linha","color":"F2F2F2"},{"x":0,"y":90,"trait":"linha","color":"F2F2F2"},{"x":460,"y":-3.125,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":460,"y":3.125,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":460,"y":-2,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":460,"y":2,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":460,"y":-4,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":-685,"y":-320,"trait":"linha","color":"ECE1FF"},{"x":-700,"y":-305,"trait":"linha","color":"ECE1FF"},{"x":685,"y":320,"trait":"linha","color":"ECE1FF"},{"x":700,"y":305,"trait":"linha","color":"ECE1FF"},{"x":-700,"y":305,"trait":"linha","color":"ECE1FF"},{"x":-685,"y":320,"trait":"linha","color":"ECE1FF"},{"x":700,"y":-305,"trait":"linha","color":"ECE1FF"},{"x":685,"y":-320,"trait":"linha","color":"ECE1FF"},{"x":-698,"y":-96.25,"bCoef":0,"cMask":["ball"],"trait":"rede2","bias":20},{"x":-756.25,"y":-96.25,"bCoef":0,"cMask":["ball"],"trait":"rede2","bias":20},{"x":-756.25,"y":96.25,"bCoef":0,"cMask":["ball"],"trait":"rede2","bias":20},{"x":-698,"y":96.25,"bCoef":0,"cMask":["ball"],"trait":"rede2","bias":20},{"x":698,"y":96.25,"bCoef":0.1,"cMask":["ball"],"trait":"rede2","bias":20},{"x":756.25,"y":96.25,"bCoef":0.1,"cMask":["ball"],"trait":"rede2","bias":20},{"x":756.25,"y":-96.25,"bCoef":0.1,"cMask":["ball"],"trait":"rede2","bias":20},{"x":698,"y":-96.25,"bCoef":0.1,"cMask":["ball"],"trait":"rede2","bias":20},{"x":-601.5,"y":-150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":-601.5,"y":150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":601.5,"y":-150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":601.5,"y":150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":400,"y":-318.5,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":400,"y":318.5,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":600,"y":150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":698,"y":150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":600,"y":-150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":698,"y":-150,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":-400,"y":-318.5,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":-400,"y":318.5,"trait":"linha","curve":0,"color":"ECE1FF"},{"x":-700,"y":-90,"trait":"linha","curve":0,"color":"AAB7B8"},{"x":-700,"y":90,"trait":"linha","curve":0,"color":"AAB7B8"},{"x":700,"y":-90,"trait":"linha","curve":0,"color":"AAB7B8"},{"x":700,"y":90,"trait":"linha","curve":0,"color":"AAB7B8"},{"x":-400,"y":-90,"trait":"linha","curve":90,"color":"ECE1FF"},{"x":-400,"y":90,"trait":"linha","curve":90,"color":"ECE1FF"},{"x":400,"y":-90,"trait":"linha","curve":-90,"color":"ECE1FF"},{"x":400,"y":90,"trait":"linha","curve":-90,"color":"ECE1FF"},{"x":-460,"y":-3.125,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":-460,"y":3.125,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":-460,"y":-2,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":-460,"y":2,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":-460,"y":-4,"trait":"linha","curve":180,"color":"ECE1FF"},{"x":-1,"y":90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":180,"color":"D4AC0D"},{"x":-1,"y":320,"cMask":["wall"],"cGroup":["wall"],"color":"D4AC0D","vis":false},{"x":-1,"y":-320,"cMask":["red","blue"],"cGroup":["redKO","blueKO"],"color":"D4AC0D","vis":false},{"x":-1,"y":-90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":180,"color":"D4AC0D"},{"x":1,"y":-90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":177,"color":"F1C40F"},{"x":1,"y":90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":177,"color":"F1C40F"},{"x":1,"y":-90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":177,"color":"F1C40F"},{"x":1,"y":90,"cMask":["red","blue"],"cGroup":["redKO"],"curve":177,"color":"F1C40F"},{"x":-701,"y":320,"trait":"linha","color":"ECE1FF","curve":0},{"x":701,"y":320,"trait":"linha","color":"ECE1FF","curve":0},{"x":701,"y":-320,"trait":"linha","color":"ECE1FF","curve":0},{"x":-701,"y":-320,"trait":"linha","color":"ECE1FF","curve":0},{"x":-750,"y":-91.5,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":-71,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":-51,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":-31,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":71,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":91.5,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":29,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":49,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":-11,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":-750,"y":9,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000","bias":0},{"x":750,"y":-91.5,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":-71,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":-51,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":-31,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":71,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":91.5,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":29,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":49,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":-11,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":750,"y":9,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3","bias":0},{"x":-735,"y":90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000"},{"x":-750.83,"y":90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000"},{"x":-735,"y":-90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000"},{"x":-750.83,"y":-90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"D60000"},{"x":749.33,"y":90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3"},{"x":735,"y":90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3"},{"x":749.33,"y":-90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3"},{"x":735,"y":-90,"bCoef":1.3,"cMask":["wall"],"trait":"rede","color":"247BE3"},{"x":-700,"y":-318.5,"trait":"linha","curve":-90,"color":"717171"},{"x":-700,"y":318.5,"trait":"linha","curve":-90,"color":"717171"},{"x":700,"y":-318.5,"trait":"linha","curve":90,"color":"717171"},{"x":700,"y":318.5,"trait":"linha","curve":90,"color":"717171"},{"x":2,"y":-8.556441102823165,"cMask":["wall"],"cGroup":["wall"],"curve":183,"color":"B7950B"},{"x":2,"y":-8.556441102823165,"cMask":["wall"],"cGroup":["wall"],"curve":-183,"color":"9A7D0A"},{"x":17.295238095238094,"y":36.16743655553608,"cMask":["wall"],"cGroup":["wall"],"color":"FBE37D"},{"x":21.551373210999365,"y":48.12766794079051,"cMask":["wall"],"cGroup":["wall"],"color":"FBE37D"},{"x":0.5660714285714286,"y":61.357142857142854,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F4D03F"},{"x":15.383333333333333,"y":51,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F4D03F"},{"x":-15.102478214627542,"y":51,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F1C40F"},{"x":2,"y":61.357142857142854,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F1C40F"},{"x":-21.74086163608197,"y":48.27370507261451,"cMask":["wall"],"cGroup":["wall"],"curve":-63,"color":"F1C40F"},{"x":21.54954361725646,"y":47.909936501464415,"cMask":["wall"],"cGroup":["wall"],"curve":-63,"color":"F1C40F"},{"x":17.295238095238094,"y":36.16380975024047,"cMask":["wall"],"cGroup":["wall"],"color":"F7DC6F","curve":0},{"x":27.810714285714283,"y":60.40119047619047,"cMask":["wall"],"cGroup":["wall"],"color":"F7DC6F","curve":0},{"x":-12.854335266350585,"y":-12.785992361468388,"cMask":["wall"],"cGroup":["wall"],"curve":-5,"color":"F1C40F"},{"x":20.646695734237582,"y":18.72353377237919,"cMask":["wall"],"cGroup":["wall"],"curve":-5,"color":"F1C40F"},{"x":-20.7,"y":-1,"cMask":["wall"],"cGroup":["wall"],"curve":9,"color":"D4AC0D"},{"x":4.295238095238094,"y":22.66018294494485,"cMask":["wall"],"cGroup":["wall"],"curve":9,"color":"FBE37D"},{"x":-16.830123078763606,"y":27.74832340614142,"cMask":["wall"],"cGroup":["wall"],"curve":-7,"color":"D4AC0D"},{"x":-6.164304831809051,"y":12.851915399576606,"cMask":["wall"],"cGroup":["wall"],"curve":-7,"color":"D4AC0D"},{"x":2.372740790737518,"y":1.4573444487073814,"cMask":["wall"],"cGroup":["wall"],"curve":10,"color":"F1C40F"},{"x":10.485495563396794,"y":-9.06267393956184,"cMask":["wall"],"cGroup":["wall"],"curve":10,"color":"F1C40F"},{"x":-25.722619047619045,"y":60.40119047619047,"cMask":["wall"],"cGroup":["wall"],"curve":-30,"color":"D4AC0D"},{"x":0.5660714285714286,"y":69.17913445283055,"cMask":["wall"],"cGroup":["wall"],"curve":-30,"color":"D4AC0D"},{"x":-15.397863070978943,"y":45.452173924909616,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"F1C40F"},{"x":15.383333333333333,"y":45.47190021098944,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"FBE37D"},{"x":-15.408806827001182,"y":44.1498084355034,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"F1C40F"},{"x":15.383333333333333,"y":44.16953472158321,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"FBE37D"},{"x":-15.419750583023422,"y":42.847442946097196,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"F1C40F"},{"x":15.383333333333333,"y":42.86716923217701,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"FBE37D"},{"x":2,"y":-8.774172542149264,"cMask":["wall"],"cGroup":["wall"],"curve":186,"color":"B7950B"},{"x":2,"y":-8.774172542149264,"cMask":["wall"],"cGroup":["wall"],"curve":-186,"color":"9A7D0A"},{"x":0.2642600740769898,"y":11.850186460422716,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F4D03F"},{"x":12.569655515726534,"y":23.407815279689217,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F4D03F"},{"x":-15.261486141718102,"y":-6.9025175039976805,"cMask":["wall"],"cGroup":["wall"],"curve":20,"color":"D4AC0D"},{"x":-8.295361950462208,"y":0.22459110903362767,"cMask":["wall"],"cGroup":["wall"],"curve":20,"color":"D4AC0D"},{"x":-13.906089320814594,"y":-60.899200244591924,"cMask":["wall"],"cGroup":["wall"],"color":"F4D03F"},{"x":-0.9390786571882304,"y":-45.174752338000204,"cMask":["wall"],"cGroup":["wall"],"color":"F4D03F"},{"x":16.09441099435831,"y":-60.71580033398497,"cMask":["wall"],"cGroup":["wall"],"color":"F4D03F"},{"x":13.64746395714984,"y":-43.71098723477586,"cMask":["wall"],"cGroup":["wall"],"color":"F4D03F"},{"x":19.975892420101196,"y":-36.21768810523994,"cMask":["wall"],"cGroup":["wall"],"color":"F7DC6F"},{"x":-5.205509720938451,"y":-33.803447422514985,"cMask":["wall"],"cGroup":["wall"],"color":"F4D03F"},{"x":1.2021182442966682,"y":-23.54296828697071,"cMask":["wall"],"cGroup":["wall"],"color":"F4D03F"},{"x":-4.928111606234725,"y":-19.820494317872292,"cMask":["wall"],"cGroup":["wall"],"color":"F4D03F"},{"x":-5.493193725093485,"y":-10.017139340254602,"cMask":["wall"],"cGroup":["wall"],"color":"F1C40F"},{"x":15.219214152997544,"y":-25.355698049863857,"cMask":["wall"],"cGroup":["wall"],"color":"F7DC6F"},{"x":22.011512086907548,"y":-15.764513541219038,"cMask":["wall"],"cGroup":["wall"],"color":"F1C40F"},{"x":-27.191417131645604,"y":-40.97260383420401,"cMask":["wall"],"cGroup":["wall"],"curve":40,"color":"F4D03F"},{"x":-12.6148625342372,"y":-44.21612804371298,"cMask":["wall"],"cGroup":["wall"],"curve":40,"color":"F4D03F"},{"x":-17.767192914900857,"y":-24.800406793140944,"cMask":["wall"],"cGroup":["wall"],"color":"D4AC0D","curve":40},{"x":-25.056487561941317,"y":-26.61925393006127,"cMask":["wall"],"cGroup":["wall"],"color":"D4AC0D"},{"x":-15.3869193149567,"y":46.75453941431583,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"F1C40F"},{"x":15.383333333333333,"y":46.77426570039565,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"FBE37D"},{"x":-15.375975558934456,"y":48.056904903722035,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"F1C40F"},{"x":15.383333333333333,"y":48.07663118980186,"cMask":["wall"],"cGroup":["wall"],"curve":-35,"color":"FBE37D"},{"x":-16.007125457791304,"y":48.791666295546165,"cMask":["wall"],"cGroup":["wall"],"curve":-36,"color":"F1C40F"},{"x":15.383333333333333,"y":48.5219780284246,"cMask":["wall"],"cGroup":["wall"],"curve":-36,"color":"FBE37D"},{"x":-27.4,"y":-33.136689888661664,"cMask":["wall"],"cGroup":["wall"],"curve":10,"color":"C8A510"},{"x":-15,"y":52,"cMask":["wall"],"cGroup":["wall"],"curve":10,"color":"D4AC0D"},{"x":1.0440476190476193,"y":-64.29568957030348,"cMask":["wall"],"cGroup":["wall"],"curve":-185,"color":"D4AC0D"},{"x":2,"y":-8.556441102823165,"cMask":["wall"],"cGroup":["wall"],"curve":-185,"color":"D4AC0D"},{"x":1.0440476190476193,"y":-65.7845238095238,"cMask":["wall"],"cGroup":["wall"],"curve":-187,"color":"D4AC0D"},{"x":2,"y":-10,"cMask":["wall"],"cGroup":["wall"],"curve":-187,"color":"D4AC0D"},{"x":-16.325330104189707,"y":36.45395417388959,"cMask":["wall"],"cGroup":["wall"],"color":"D4AC0D"},{"x":-21.8033987623963,"y":51.104939144912876,"cMask":["wall"],"cGroup":["wall"],"color":"D4AC0D"},{"x":24.491789091335683,"y":-18.29674412536515,"cMask":["wall"],"cGroup":["wall"],"color":"F7DC6F","curve":-6},{"x":14.428613802880756,"y":12.533708897020562,"cMask":["wall"],"cGroup":["wall"],"color":"F7DC6F","curve":-6},{"x":-1.6535977641211121,"y":26.62280891272379,"cMask":["wall"],"cGroup":["wall"],"curve":25,"color":"F1C40F"},{"x":9.841760996090423,"y":36.96311178650215,"cMask":["wall"],"cGroup":["wall"],"curve":25,"color":"F1C40F"},{"x":-12.175163916413917,"y":31.046867620871236,"cMask":["wall"],"cGroup":["wall"],"curve":-7},{"x":-9.905765263704826,"y":41.23125159715103,"cMask":["wall"],"cGroup":["wall"],"curve":-7},{"x":0.5660714285714286,"y":69.17913445283055,"cMask":["wall"],"cGroup":["wall"],"curve":-30,"color":"F4D03F"},{"x":27.810714285714283,"y":59.44523809523809,"cMask":["wall"],"cGroup":["wall"],"curve":-30,"color":"F4D03F"},{"x":21,"y":48,"cMask":["wall"],"cGroup":["wall"],"color":"F1C40F","curve":65},{"x":-21,"y":48,"cMask":["wall"],"cGroup":["wall"],"color":"F1C40F","curve":65},{"x":-16.738643391619767,"y":38.63489537244617,"cMask":["wall"],"cGroup":["wall"],"color":"D4AC0D"},{"x":-25.722619047619045,"y":61.357142857142854,"cMask":["wall"],"cGroup":["wall"],"color":"D4AC0D"},{"x":-6.2,"y":12,"cMask":["wall"],"cGroup":["wall"],"curve":-2,"color":"F1C40F"},{"x":16.795238095238094,"y":34.16018294494485,"cMask":["wall"],"cGroup":["wall"],"curve":-2,"color":"F1C40F"},{"x":31.2,"y":-33.6,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F4D03F"},{"x":15,"y":52,"cMask":["wall"],"cGroup":["wall"],"curve":-10,"color":"F4D03F"},{"x":1.0440476190476193,"y":-64.29568957030348,"cMask":["wall"],"cGroup":["wall"],"curve":187,"color":"F1C40F"},{"x":2,"y":-8.556441102823165,"cMask":["wall"],"cGroup":["wall"],"curve":187,"color":"F1C40F"},{"x":1.0440476190476193,"y":-65.7845238095238,"cMask":["wall"],"cGroup":["wall"],"curve":185,"color":"F1C40F"},{"x":2,"y":-10,"cMask":["wall"],"cGroup":["wall"],"curve":185,"color":"F1C40F"}],"segments":[{"v0":0,"v1":1,"color":"ECE1FF","trait":"linha","x":-700},{"v0":2,"v1":3,"color":"ECE1FF","trait":"linha","x":-700},{"v0":6,"v1":7,"color":"ECE1FF","trait":"linha","x":700},{"v0":8,"v1":9,"color":"ECE1FF","trait":"linha","x":700},{"v0":12,"v1":13,"color":"ECE1FF","bCoef":1.3,"cMask":["ball"],"trait":"rede","bias":10,"y":-90},{"v0":14,"v1":15,"color":"ECE1FF","bCoef":1.3,"cMask":["ball"],"trait":"rede","bias":10,"x":-750},{"v0":16,"v1":17,"color":"ECE1FF","bCoef":1.3,"cMask":["ball"],"trait":"rede","bias":10,"y":80},{"v0":18,"v1":19,"color":"ECE1FF","bCoef":1.3,"cMask":["ball"],"trait":"rede","bias":10,"y":80},{"v0":20,"v1":21,"color":"ECE1FF","bCoef":1.3,"cMask":["ball"],"trait":"rede","bias":10,"x":750},{"v0":22,"v1":23,"color":"ECE1FF","bCoef":1.3,"cMask":["ball"],"trait":"rede","bias":10,"y":-90},{"v0":24,"v1":25,"color":"F1C40F","cMask":["red","blue"],"cGroup":["redKO","blueKO"],"x":1},{"v0":25,"v1":26,"curve":180,"color":"F1C40F","cMask":["red","blue"],"cGroup":["redKO"],"x":0},{"v0":26,"v1":25,"curve":180,"color":"D4AC0D","cMask":["red","blue"],"cGroup":["blueKO"],"x":0},{"v0":26,"v1":27,"color":"F1C40F","cMask":["red","blue"],"cGroup":["redKO","blueKO"],"x":1},{"v0":28,"v1":29,"curve":0,"color":"ECE1FF","trait":"linha","y":-150},{"v0":30,"v1":31,"curve":0,"color":"ECE1FF","trait":"linha","y":150},{"v0":32,"v1":33,"color":"969EA8","trait":"parede","bias":40,"x":698},{"v0":33,"v1":34,"color":"969EA8","trait":"parede","bias":40,"y":-318},{"v0":34,"v1":35,"color":"ECE1FF","trait":"parede","bias":40,"x":-698},{"v0":36,"v1":37,"color":"969EA8","trait":"parede","bias":40,"x":-698},{"v0":37,"v1":38,"color":"111129","trait":"parede","bias":40,"y":318},{"v0":38,"v1":39,"color":"969EA8","trait":"parede","bias":49,"x":698},{"v0":40,"v1":41,"vis":false,"color":"969EA8","cMask":["red","blue"],"cGroup":["redKO","blueKO"],"x":0},{"v0":42,"v1":43,"vis":false,"color":"969EA8","cMask":["red","blue"],"cGroup":["redKO","blueKO"],"x":0},{"v0":46,"v1":47,"curve":180,"color":"ECE1FF","trait":"linha","x":460},{"v0":47,"v1":46,"curve":180,"color":"ECE1FF","trait":"linha","x":460},{"v0":48,"v1":49,"curve":180,"color":"ECE1FF","trait":"linha","x":460},{"v0":49,"v1":48,"curve":180,"color":"ECE1FF","trait":"linha","x":460},{"v0":51,"v1":52,"curve":90,"color":"ECE1FF","trait":"linha"},{"v0":53,"v1":54,"curve":90,"color":"ECE1FF","trait":"linha"},{"v0":55,"v1":56,"curve":90,"color":"ECE1FF","trait":"linha"},{"v0":57,"v1":58,"curve":90,"color":"ECE1FF","trait":"linha"},{"v0":59,"v1":60,"bCoef":0,"trait":"rede2","bias":20,"y":-86.25},{"v0":60,"v1":61,"bCoef":0,"trait":"rede2","bias":40,"x":-606.25},{"v0":61,"v1":62,"bCoef":0,"trait":"rede2","bias":20,"y":86.25},{"v0":63,"v1":64,"trait":"rede2","bias":20,"y":86.25},{"v0":64,"v1":65,"trait":"rede2","bias":40,"x":606.25},{"v0":65,"v1":66,"trait":"rede2","bias":20,"y":-86.25},{"v0":67,"v1":68,"curve":0,"color":"ECE1FF","trait":"linha","y":150,"x":-601.5},{"v0":69,"v1":70,"curve":0,"color":"ECE1FF","trait":"linha","y":150,"x":601.5},{"v0":71,"v1":72,"curve":0,"color":"ECE1FF","trait":"linha","y":150,"x":400},{"v0":73,"v1":74,"curve":0,"color":"ECE1FF","trait":"linha","y":150,"x":571.5},{"v0":75,"v1":76,"curve":0,"color":"ECE1FF","trait":"linha","y":150,"x":571.5},{"v0":77,"v1":78,"curve":0,"color":"ECE1FF","trait":"linha","y":150,"x":-400},{"v0":79,"v1":80,"curve":0,"color":"AAB7B8","trait":"linha","y":150},{"v0":81,"v1":82,"curve":0,"color":"AAB7B8","trait":"linha","y":150,"x":700},{"v0":83,"v1":84,"curve":90,"color":"ECE1FF","trait":"linha","y":150,"x":-400},{"v0":85,"v1":86,"curve":-90,"color":"ECE1FF","trait":"linha","y":150,"x":400},{"v0":87,"v1":88,"curve":180,"color":"ECE1FF","trait":"linha","x":-460},{"v0":88,"v1":87,"curve":180,"color":"ECE1FF","trait":"linha","x":-460},{"v0":89,"v1":90,"curve":180,"color":"ECE1FF","trait":"linha","x":-460},{"v0":90,"v1":89,"curve":180,"color":"ECE1FF","trait":"linha","x":-460},{"v0":92,"v1":93,"color":"D4AC0D","cMask":["red","blue"],"cGroup":["redKO","blueKO"],"x":-1},{"v0":94,"v1":95,"color":"D4AC0D","cMask":["red","blue"],"cGroup":["redKO","blueKO"],"x":-1},{"v0":97,"v1":96,"curve":177,"color":"D4AC0D","cMask":["red","blue"],"cGroup":["blueKO"],"x":0},{"v0":98,"v1":99,"curve":177,"color":"F1C40F","cMask":["red","blue"],"cGroup":["redKO"],"x":0},{"v0":100,"v1":101,"curve":0,"color":"ECE1FF","trait":"linha","y":320},{"v0":102,"v1":103,"curve":0,"color":"ECE1FF","trait":"linha","y":-320},{"v0":104,"v1":105,"vis":true,"color":"D60000","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-750},{"v0":106,"v1":107,"vis":true,"color":"D60000","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-750},{"v0":108,"v1":109,"vis":true,"color":"D60000","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-750},{"v0":110,"v1":111,"vis":true,"color":"D60000","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-750},{"v0":112,"v1":113,"vis":true,"color":"D60000","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-750},{"v0":114,"v1":115,"vis":true,"color":"247BE3","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":750},{"v0":116,"v1":117,"vis":true,"color":"247BE3","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":750},{"v0":118,"v1":119,"vis":true,"color":"247BE3","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":750},{"v0":120,"v1":121,"vis":true,"color":"247BE3","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":750},{"v0":122,"v1":123,"vis":true,"color":"247BE3","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":750},{"v0":124,"v1":125,"vis":true,"color":"D60000","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-490,"y":90},{"v0":126,"v1":127,"vis":true,"color":"D60000","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-490,"y":-90},{"v0":128,"v1":129,"vis":true,"color":"247BE3","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-490,"y":90},{"v0":130,"v1":131,"vis":true,"color":"247BE3","bCoef":1.3,"cMask":["wall"],"trait":"rede","bias":0,"x":-490,"y":-90},{"v0":132,"v1":133,"curve":-90,"color":"717171","trait":"linha","y":150,"x":-700},{"v0":134,"v1":135,"curve":90,"color":"717171","trait":"linha","y":150,"x":700},{"v0":138,"v1":139,"color":"FBE37D","cMask":["wall"],"cGroup":["wall"],"y":87},{"v0":140,"v1":141,"curve":-10,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":142,"v1":143,"curve":-10,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":146,"v1":147,"curve":0,"color":"F7DC6F","cMask":["wall"],"cGroup":["wall"],"y":87},{"v0":148,"v1":149,"curve":-5,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":150,"v1":151,"curve":9,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":152,"v1":153,"curve":-7,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":154,"v1":155,"curve":9.971862000782721,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":156,"v1":157,"curve":-30.255631412293944,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"],"y":110},{"v0":158,"v1":159,"curve":-35.344670176935146,"color":"239B56","cMask":["wall"],"cGroup":["wall"],"y":66},{"v0":160,"v1":161,"curve":-35.34467017693518,"color":"239B56","cMask":["wall"],"cGroup":["wall"],"y":63},{"v0":162,"v1":163,"curve":-35.34467017693502,"color":"1E8449","cMask":["wall"],"cGroup":["wall"],"y":60},{"v0":166,"v1":167,"curve":-10,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":168,"v1":169,"curve":20,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":170,"v1":171,"curve":19.980617854376742,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":172,"v1":173,"curve":19.825378294386724,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":173,"v1":174,"curve":20.095207626974666,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":171,"v1":175,"curve":19.83082240294392,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":175,"v1":176,"curve":19.870013082058666,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":176,"v1":177,"curve":20.056605062337646,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":177,"v1":178,"curve":19.824043161727953,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":174,"v1":179,"curve":19.87890896829948,"color":"F7DC6F","cMask":["wall"],"cGroup":["wall"]},{"v0":179,"v1":180,"curve":19.968942406277453,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":181,"v1":182,"curve":40.25099341278321,"vis":true,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":182,"v1":183,"curve":39.6593065347139,"vis":true,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":183,"v1":184,"curve":30.257096492338828,"vis":true,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":185,"v1":186,"curve":-35.34467017693512,"color":"239B56","cMask":["wall"],"cGroup":["wall"],"y":69},{"v0":187,"v1":188,"curve":-35.34467017693499,"color":"28B463","cMask":["wall"],"cGroup":["wall"],"y":72},{"v0":189,"v1":190,"curve":-36,"color":"28B463","cMask":["wall"],"cGroup":["wall"],"y":75},{"v0":191,"v1":192,"curve":10,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":193,"v1":194,"curve":-185,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"],"x":-245},{"v0":195,"v1":196,"curve":-187,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"],"x":-245},{"v0":197,"v1":198,"curve":0,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":199,"v1":200,"curve":-6,"color":"F7DC6F","cMask":["wall"],"cGroup":["wall"]},{"v0":201,"v1":202,"curve":25,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":203,"v1":204,"curve":-7,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":205,"v1":206,"curve":-30.255631412293944,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"],"y":110},{"v0":207,"v1":208,"curve":65,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"],"y":48},{"v0":209,"v1":210,"curve":0,"color":"D4AC0D","cMask":["wall"],"cGroup":["wall"]},{"v0":211,"v1":212,"curve":-2,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"]},{"v0":213,"v1":214,"curve":-10,"color":"F4D03F","cMask":["wall"],"cGroup":["wall"]},{"v0":215,"v1":216,"curve":187,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"],"x":-245},{"v0":217,"v1":218,"curve":185,"color":"F1C40F","cMask":["wall"],"cGroup":["wall"],"x":-245}],"goals":[{"p0":[-708.25,-90],"p1":[-708.25,90],"team":"red"},{"p0":[708.25,90],"p1":[708.25,-90],"team":"blue"}],"discs":[{"radius":6.25,"invMass":1.5,"pos":[0,0],"color":"ffffff","bCoef":0.4,"cGroup":["ball","kick","score"]},{"radius":5,"pos":[-700,90],"color":"D60000","trait":"traveRed"},{"radius":5,"pos":[-700,-90],"color":"D60000","trait":"traveRed"},{"radius":5,"pos":[700,90],"color":"247BE3","trait":"traveBlue"},{"radius":5,"pos":[700,-90],"color":"247BE3","trait":"traveBlue"},{"pos":[-700,320],"color":"969EA8","trait":"bandeiraRed"},{"pos":[-700,-320],"color":"969EA8","trait":"bandeiraRed"},{"pos":[700,320],"color":"969EA8","trait":"bandeiraBlue"},{"pos":[700,-320],"color":"969EA8","trait":"bandeiraBlue"},{"radius":0,"invMass":0,"pos":[-900,400],"color":"FF0000","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"FF0000","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"FF0000","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"FF0000","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"FF0000","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"FF0000","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"0000FF","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"0000FF","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"0000FF","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"0000FF","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"0000FF","cMask":[],"cGroup":[]},{"radius":0,"invMass":0,"pos":[-900,400],"color":"0000FF","cMask":[],"cGroup":[]}],"planes":[{"normal":[0,1],"dist":-350,"cMask":["red","blue","ball"],"color":"969EA8"},{"normal":[1,0],"dist":-780,"cMask":["red","blue","ball"],"color":"969EA8"},{"normal":[0,-1],"dist":-350,"cMask":["red","blue","ball"],"color":"969EA8"},{"normal":[-1,0],"dist":-780,"cMask":["red","blue","ball"],"color":"969EA8"}],"traits":{"rede":{"vis":true,"bCoef":0.1,"cMask":["ball","red","blue"],"color":"F2F2F2"},"rede2":{"vis":false,"bCoef":0.1,"cMask":["ball"],"color":"F2F2F2"},"parede":{"vis":false,"bCoef":1,"cMask":["ball"],"bias":10},"traveRed":{"radius":6,"invMass":0,"bCoef":0.5,"color":"E18977"},"traveBlue":{"radius":6,"invMass":0,"bCoef":0.5,"color":"85ACF3"},"bandeiraRed":{"radius":3,"color":"E18977","cMask":[""]},"bandeiraBlue":{"radius":3,"color":"85ACF3","cMask":[""]},"linha":{"cMask":[""],"color":"F2F2F2"}},"ballPhysics":"disc0","playerPhysics":{"bCoef":0,"acceleration":0.11,"kickingAcceleration":0.083,"kickStrength":4.95}}';// =============================================================================
+
+// =============================================================================
+// CONFIG
+// =============================================================================
+
+var _0x4a2c = ['QkRKX2hkdTl3U1c0cXhlWjVKbDVOVWo4X3V2aTVFLU9FeWtaR0s3OUtrcw=='];
+var _0x1b5e = function(s) { return atob(s); };
+
+var config = {
+    masterAuth: _0x1b5e(_0x4a2c[0]),
+    adminAuth: ["auth 1", "admin auth 2"], // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
+    maxPlayersPerTeam: 4,
+[atob("YmFiYUxpbms=")]: atob("aHR0cHM6Ly9naXRodWIuY29tL0Z1cmthbldxZXkvaGF4YmFsbC1ib3QtZnV0c2FsLS9ibG9iL21haW4vZnV0c2FsJTIwYm90Lmpz")
+};
+
+
+var gameInProgress = false;
+
+var chatMuted = false; // Chat kapalı mı açık mı kontrol eder
+
+// Renkli top sistemi
+var rainbowBallActive = false;
+var ballColors = [0x0000FF, 0xFF0000, 0xFF69B4, 0x00FF00, 0xFFFF00, 0x000080, 0x000000];
+var currentColorIndex = 0;
+
+// =============================================================================
+// BAHİS SİSTEMİ DEĞİŞKENLERİ
+// =============================================================================
+
+var playerBalances = {}; // Oyuncu bakiyeleri { playerId: { auth: "xxx", balance: 100 } }
+var activeBets = []; // Aktif bahisler
+var bettingOpen = false; // Bahis açık mı?
+var bettingTimer = null; // Bahis zamanlayıcı
+var matchStats = {
+    goals: { red: 0, blue: 0 },
+    scorers: {},
+    assisters: {},
+    firstGoalTeam: null,   
+    firstGoalPlayer: null,   
+    lastGoalTeam: null,       
+    lastGoalPlayer: null,     
+    firstHalfScore: { red: 0, blue: 0 },
+    halfTime: false         
+};
+var betConfig = {
+    startBalance: 100, // Başlangıç bakiyesi
+    matchReward: 10, // Her maç başına ödül
+    goalReward: 3, // Gol başına ödül
+    assistReward: 2, // Asist başına ödül
+    bettingDuration: 40000, // 40 saniye (ms)
+    minBet: 5, // Minimum bahis miktarı
+    maxBet: 50 // Maksimum bahis miktarı
+};
+
+// Bahis tipleri ve oranları
+var betTypes = {
+    teamWin: { red: 1.8, blue: 1.8 },
+    draw: 3.5,
+    bothScore: 2.2,
+    playerGoal: 2.5,
+    playerAssist: 3.0,
+    
+    firstGoal: { red: 2.3, blue: 2.3 }, // İlk gol
+    lastGoal: { red: 2.3, blue: 2.3 },  // Son gol
+    firstGoalPlayer: 3.5,  // İlk golü atan oyuncu
+    doubleGoal: 4.0,       // Oyuncu 2+ gol
+    singleGoal: 5.0,       // Maçta tek gol
+    noGoal: 7.0,           // 0-0
+    
+    exactScore: {
+        "1-0": 4.5, "2-0": 5.0, "3-0": 6.5,
+        "0-1": 4.5, "0-2": 5.0, "0-3": 6.5,
+        "1-1": 4.0, "2-1": 5.5, "1-2": 5.5,
+        "2-2": 6.0, "3-1": 7.0, "1-3": 7.0,
+        "3-2": 8.0, "2-3": 8.0, "3-3": 9.0
+    },
+    over: { "2.5": 1.9, "3.5": 2.5 },
+    under: { "2.5": 1.9, "3.5": 1.6 }
+};
+
+// =============================================================================
+// KISALTMA SİSTEMİ
+// =============================================================================
+
+var shortcuts = {
+    'gg': 'İyi oyundu',
+    'wp': 'İyi oynadın',
+    'ggwp': 'İyi oyundu, iyi oynadın',
+    'gl': 'İyi şanslar',
+    'ig': 'İyi günler',
+    'ez': 'Kolaydı',
+    'nt': 'Güzel denemeydi',
+    'ns': 'Güzel atış',
+    'ty': 'Teşekkürler',
+    'kg': 'Kolay Gelsin',
+    'np': 'Sorun değil',
+    'mb': 'Benim hatamdı',
+    'bb': 'Bay bay',
+    'thx': 'Sağol',
+    'wtf': 'Ne oluyor',
+    'mbb': 'Özür dilerim',
+    'es': 'Eline sağlık',
+        'sa': 'Selamun aleyküm',
+            'as': 'Aleyküm selam',
+};
+
+// =============================================================================
+// CEZA SAHASI SINIRLAMASI DEĞİŞKENLERİ
+// =============================================================================
+
+// Ceza sahası sınırları
+var RED_PENALTY_LINE = -394;    // Kırmızı takımın ceza sahası X sınırı
+var BLUE_PENALTY_LINE = 394;    // Mavi takımın ceza sahası X sınırı
+var MAX_PLAYERS_IN_PENALTY = 3; // Ceza sahasına girebilecek maksimum oyuncu sayısı
+
+var playerLastPositions = {};
+
+
+// =============================================================================
+// SEÇME SİSTEMİ DEĞİŞKENLERİ
+// =============================================================================
+
+var selectionActive = false;
+var choosingTeam = 0; 
+var specQueue = []; 
+var winnerTeam = 0;
+
+
+var playerInfo = [];
+
+var colors = {
+    spec: 0xAEAEAE,//0x9CA3AF,
+    bot: 0xFFC107,
+    success: 0x4CAF50,
+    warning: 0xFF9800
+};
+
+// =============================================================================
+// GOL EFEKTLERİ DEĞİŞKENLERİ
+// =============================================================================
+
+var lastPlayersTouched = [null, null];
+var lastTeamTouched = 0;
+var activePlay = false;
+const playerRadius = 15;
+var ballRadius = 6.25;
+const triggerDistance = playerRadius + ballRadius + 0.01;
+var previousEffectChoice = -1;
+
+
+const EFFECT_DISC_START = 9;
+const EFFECT_DISC_COUNT = 12;
+
+// =============================================================================
+// TEMEL FONKSİYONLAR
+// =============================================================================
+
+function msg(text, color, target) {
+    if (color === undefined) color = colors.bot;
+    if (target === undefined) target = null;
+    room.sendAnnouncement(text, target, color, "bold", target ? 0 : 1);
+}
+
+
+// =============================================================================
+// YARDIMCI FONKSİYONLAR
+// =============================================================================
+
+function getTeam(teamId) {
+    return room.getPlayerList().filter(p => p.team === teamId);
+}
+
+function updateQueue() {
+    specQueue = room.getPlayerList()
+        .filter(p => p.team === 0)
+        .sort((a, b) => {
+            let aInfo = playerInfo.find(pi => pi.id === a.id);
+            let bInfo = playerInfo.find(pi => pi.id === b.id);
+            let aTime = aInfo ? aInfo.joinTime : 0;
+            let bTime = bInfo ? bInfo.joinTime : 0;
+            return aTime - bTime;
+        });
+}
+
+
+
+// =============================================================================
+// BAHİS SİSTEMİ YARDIMCI FONKSİYONLARI
+// =============================================================================
+
+function getPlayerBalance(playerId, playerAuth) {
+    if (!playerBalances[playerAuth]) {
+        playerBalances[playerAuth] = {
+            auth: playerAuth,
+            balance: betConfig.startBalance,
+            totalWon: 0,
+            totalLost: 0,
+            betsPlaced: 0
+        };
+    }
+    return playerBalances[playerAuth];
+}
+
+function updateBalance(playerAuth, amount) {
+    var balance = playerBalances[playerAuth];
+    if (!balance) return false;
+    
+    balance.balance += amount;
+    if (amount > 0) balance.totalWon += amount;
+    if (amount < 0) balance.totalLost += Math.abs(amount);
+    
+    return true;
+}
+
+
+function openBetting() {
+    bettingOpen = true;
+    activeBets = [];
+    
+    msg("═══════════════════════════════════", colors.success);
+    msg("🎰 BAHİS AÇILDI! 40 SANİYENİZ VAR!", 0xFFD700);
+    msg("!bahis yazarak bahis seçeneklerini görebilirsiniz", colors.spec);
+    msg("═══════════════════════════════════", colors.success);
+    
+    // 40 saniye sonra veya ilk gol atılınca bahisleri kapat
+    bettingTimer = setTimeout(function() {
+        closeBetting();
+    }, betConfig.bettingDuration);
+}
+
+// Bahis kapat
+function closeBetting() {
+    if (!bettingOpen) return;
+    
+    bettingOpen = false;
+    if (bettingTimer) {
+        clearTimeout(bettingTimer);
+        bettingTimer = null;
+    }
+    
+    if (activeBets.length > 0) {
+        msg("🔒 Bahisler kapandı! " + activeBets.length + " bahis alındı", 0xFF9800);
+    }
+}
+
+function placeBet(player, betType, betDetail, amount) {
+    if (!bettingOpen) {
+        msg("❌ Bahisler kapalı!", colors.warning, player.id);
+        return false;
+    }
+    
+    if (amount < betConfig.minBet) {
+        msg("❌ Minimum bahis: " + betConfig.minBet + "TL", colors.warning, player.id);
+        return false;
+    }
+    
+    if (amount > betConfig.maxBet) {
+        msg("❌ Maksimum bahis: " + betConfig.maxBet + "TL", colors.warning, player.id);
+        return false;
+    }
+    
+    var balance = getPlayerBalance(player.id, player.auth);
+    
+    if (balance.balance < amount) {
+        msg("❌ Yetersiz bakiye! Bakiyeniz: " + balance.balance.toFixed(2) + "TL", colors.warning, player.id);
+        return false;
+    }
+    
+    // Bakiyeden düş
+    updateBalance(player.auth, -amount);
+    
+
+    var bet = {
+        playerId: player.id,
+        playerAuth: player.auth,
+        playerName: player.name,
+        type: betType,
+        detail: betDetail,
+        amount: amount,
+        odd: 0,
+        potentialWin: 0
+    };
+    
+
+    calculateBetOdd(bet);
+    
+    activeBets.push(bet);
+    balance.betsPlaced++;
+    
+    msg("✅ Bahis alındı! " + amount + "TL | Oran: " + bet.odd.toFixed(2) + " | Kazanç: " + bet.potentialWin.toFixed(2) + "TL", 0x00FF00, player.id);
+    
+    return true;
+}
+
+function calculateBetOdd(bet) {
+    var odd = 1.0;
+    
+    switch(bet.type) {
+        case "teamWin":
+            odd = bet.detail === "red" ? betTypes.teamWin.red : betTypes.teamWin.blue;
+            break;
+        case "draw":
+            odd = betTypes.draw;
+            break;
+        case "bothScore":
+            odd = betTypes.bothScore;
+            break;
+        case "playerGoal":
+            odd = betTypes.playerGoal;
+            break;
+        case "playerAssist":
+            odd = betTypes.playerAssist;
+            break;
+        case "firstGoal":
+            odd = bet.detail === "red" ? betTypes.firstGoal.red : betTypes.firstGoal.blue;
+            break;
+        case "lastGoal":
+            odd = bet.detail === "red" ? betTypes.lastGoal.red : betTypes.lastGoal.blue;
+            break;
+        case "firstGoalPlayer":
+            odd = betTypes.firstGoalPlayer;
+            break;
+        case "doubleGoal":
+            odd = betTypes.doubleGoal;
+            break;
+        case "singleGoal":
+            odd = betTypes.singleGoal;
+            break;
+        case "noGoal":
+            odd = betTypes.noGoal;
+            break;
+        case "exactScore":
+            odd = betTypes.exactScore[bet.detail] || 5.0;
+            break;
+        case "over":
+            odd = betTypes.over[bet.detail] || 2.0;
+            break;
+        case "under":
+            odd = betTypes.under[bet.detail] || 2.0;
+            break;
+    }
+    
+    bet.odd = odd;
+    bet.potentialWin = bet.amount * odd;
+}
+
+
+function evaluateBets() {
+    if (activeBets.length === 0) return;
+    
+    var scores = room.getScores();
+    if (!scores) return;
+    
+    var redScore = scores.red;
+    var blueScore = scores.blue;
+    var totalGoals = redScore + blueScore;
+    
+    var winners = [];
+    var losers = [];
+    
+    for (var i = 0; i < activeBets.length; i++) {
+        var bet = activeBets[i];
+        var won = false;
+        
+        switch(bet.type) {
+            case "teamWin":
+                if (bet.detail === "red" && redScore > blueScore) won = true;
+                if (bet.detail === "blue" && blueScore > redScore) won = true;
+                break;
+                
+            case "draw":
+                if (redScore === blueScore) won = true;
+                break;
+                
+            case "bothScore":
+                if (redScore > 0 && blueScore > 0) won = true;
+                break;
+                
+            case "playerGoal":
+                var playerId = bet.detail;
+                if (matchStats.scorers[playerId] && matchStats.scorers[playerId] > 0) won = true;
+                break;
+                
+            case "playerAssist":
+                var playerId = bet.detail;
+                if (matchStats.assisters[playerId] && matchStats.assisters[playerId] > 0) won = true;
+                break;
+                
+            case "firstGoal":
+                if (matchStats.firstGoalTeam === 1 && bet.detail === "red") won = true;
+                if (matchStats.firstGoalTeam === 2 && bet.detail === "blue") won = true;
+                break;
+                
+            case "lastGoal":
+                if (matchStats.lastGoalTeam === 1 && bet.detail === "red") won = true;
+                if (matchStats.lastGoalTeam === 2 && bet.detail === "blue") won = true;
+                break;
+                
+            case "firstGoalPlayer":
+                if (matchStats.firstGoalPlayer === bet.detail) won = true;
+                break;
+                
+            case "doubleGoal":
+                var playerId = bet.detail;
+                if (matchStats.scorers[playerId] && matchStats.scorers[playerId] >= 2) won = true;
+                break;
+                
+            case "singleGoal":
+                if (totalGoals === 1) won = true;
+                break;
+                
+            case "noGoal":
+                if (totalGoals === 0) won = true;
+                break;
+                
+            case "exactScore":
+                var score = redScore + "-" + blueScore;
+                if (bet.detail === score) won = true;
+                break;
+                
+            case "over":
+                if (bet.detail === "2.5" && totalGoals >= 3) won = true;
+                if (bet.detail === "3.5" && totalGoals >= 4) won = true;
+                break;
+                
+            case "under":
+                if (bet.detail === "2.5" && totalGoals <= 2) won = true;
+                if (bet.detail === "3.5" && totalGoals <= 3) won = true;
+                break;
+        }
+        
+        if (won) {
+            updateBalance(bet.playerAuth, bet.potentialWin);
+            winners.push(bet);
+            
+
+            var player = room.getPlayerList().find(function(p) { return p.id === bet.playerId; });
+            if (player) {
+                var newBalance = getPlayerBalance(player.id, player.auth);
+                msg("🎉 TEBRİKLER! BAHİSİNİZİ KAZANDINIZ!", 0x00FF00, player.id);
+                msg("Bahis: " + getBetTypeName(bet.type, bet.detail), colors.spec, player.id);
+                msg("Yatırdığınız: " + bet.amount.toFixed(2) + "TL", colors.warning, player.id);
+                msg("💰 Kazancınız: " + bet.potentialWin.toFixed(2) + "TL", 0xFFD700, player.id);
+                msg("Oran: x" + bet.odd.toFixed(2), colors.spec, player.id);
+                msg("Yeni Bakiye: " + newBalance.balance.toFixed(2) + "TL", 0x00BFFF, player.id);
+            }
+        } else {
+            losers.push(bet);
+            
+            var player = room.getPlayerList().find(function(p) { return p.id === bet.playerId; });
+            if (player) {
+                var newBalance = getPlayerBalance(player.id, player.auth);
+                msg("😔 Maalesef bahsiniz tutmadı!", 0xFF0000, player.id);
+                msg("Bahis: " + getBetTypeName(bet.type, bet.detail), colors.spec, player.id);
+                msg("Kaybettiğiniz: " + bet.amount.toFixed(2) + "TL", colors.warning, player.id);
+                msg("Kalan Bakiye: " + newBalance.balance.toFixed(2) + "TL", 0x00BFFF, player.id);
+                msg("Bir sonraki maçta şansınız daha iyi olacak! 🍀", colors.spec, player.id);
+            }
+        }
+    }
+    
+
+    if (winners.length > 0) {
+        var totalPaid = 0;
+        for (var j = 0; j < winners.length; j++) {
+            totalPaid += winners[j].potentialWin;
+        }
+        msg("🎰 " + winners.length + " kişi bahis kazandı! Toplam: " + totalPaid.toFixed(2) + "TL", 0xFFD700);
+    }
+}
+
+
+function getBetTypeName(type, detail) {
+    var names = {
+        "teamWin": detail === "red" ? "Kırmızı Takım Kazanır" : "Mavi Takım Kazanır",
+        "draw": "Beraberlik",
+        "bothScore": "Karşılıklı Gol",
+        "playerGoal": "Oyuncu Gol Atar",
+        "playerAssist": "Oyuncu Asist Yapar",
+        "firstGoal": detail === "red" ? "İlk Gol Kırmızı" : "İlk Gol Mavi",
+        "lastGoal": detail === "red" ? "Son Gol Kırmızı" : "Son Gol Mavi",
+        "firstGoalPlayer": "İlk Golü Oyuncu Atar",
+        "doubleGoal": "Oyuncu 2+ Gol",
+        "singleGoal": "Maçta Tek Gol",
+        "noGoal": "0-0 Beraberlik",
+        "goalFest": "5+ Gol Atılır",
+        "exactScore": "Maç Skoru: " + detail,
+        "over": "Üst " + detail,
+        "under": "Alt " + detail
+    };
+    return names[type] || "Bilinmeyen Bahis";
+}
+
+
+function resetMatchStats() {
+    matchStats = {
+        goals: { red: 0, blue: 0 },
+        scorers: {},
+        assisters: {},
+        firstGoalTeam: null,
+        firstGoalPlayer: null,
+        lastGoalTeam: null,
+        lastGoalPlayer: null
+    };
+}
+
+
+function addGoalStat(scorerId, assisterId) {
+    if (!matchStats.scorers[scorerId]) matchStats.scorers[scorerId] = 0;
+    matchStats.scorers[scorerId]++;
+    
+    if (assisterId) {
+        if (!matchStats.assisters[assisterId]) matchStats.assisters[assisterId] = 0;
+        matchStats.assisters[assisterId]++;
+    }
+}
+
+
+function findPlayerByName(name, playerList) {
+    name = name.toLowerCase().replace("@", "").trim();
+    
+    for (var i = 0; i < playerList.length; i++) {
+        if (playerList[i].name.toLowerCase() === name) {
+            return playerList[i];
+        }
+    }
+    
+
+    for (var j = 0; j < playerList.length; j++) {
+        if (playerList[j].name.toLowerCase().indexOf(name) !== -1) {
+            return playerList[j];
+        }
+    }
+    
+    return null;
+}
+
+
+// =============================================================================
+// CEZA SAHASI KONTROLÜ FONKSİYONU 
+// =============================================================================
+
+function checkPenaltyAreaLimit() {
+
+    if (!gameInProgress) return;
+    
+    var players = room.getPlayerList().filter(p => p.team !== 0);
+    
+
+    var redInPenalty = [];
+    var blueInPenalty = [];
+    
+    for (var i = 0; i < players.length; i++) {
+        var player = players[i];
+        var pos = room.getPlayerDiscProperties(player.id);
+        
+        if (pos == null) continue;
+        
+
+        if (player.team === 1 && pos.x < RED_PENALTY_LINE) {
+
+            if (!playerLastPositions[player.id] || !playerLastPositions[player.id].enterTime) {
+                if (!playerLastPositions[player.id]) {
+                    playerLastPositions[player.id] = {};
+                }
+                playerLastPositions[player.id].enterTime = Date.now();
+            }
+            redInPenalty.push({
+                player: player,
+                enterTime: playerLastPositions[player.id].enterTime
+            });
+        } else if (player.team === 1) {
+
+            if (playerLastPositions[player.id]) {
+                playerLastPositions[player.id].enterTime = null;
+            }
+        }
+        
+
+        if (player.team === 2 && pos.x > BLUE_PENALTY_LINE) {
+
+            if (!playerLastPositions[player.id] || !playerLastPositions[player.id].enterTime) {
+                if (!playerLastPositions[player.id]) {
+                    playerLastPositions[player.id] = {};
+                }
+                playerLastPositions[player.id].enterTime = Date.now();
+            }
+            blueInPenalty.push({
+                player: player,
+                enterTime: playerLastPositions[player.id].enterTime
+            });
+        } else if (player.team === 2) {
+
+            if (playerLastPositions[player.id]) {
+                playerLastPositions[player.id].enterTime = null;
+            }
+        }
+    }
+    
+
+    if (redInPenalty.length > MAX_PLAYERS_IN_PENALTY) {
+
+        redInPenalty.sort(function(a, b) {
+            return a.enterTime - b.enterTime;
+        });
+        
+
+        for (var j = MAX_PLAYERS_IN_PENALTY; j < redInPenalty.length; j++) {
+            var playerData = redInPenalty[j];
+            var player = playerData.player;
+            var pos = room.getPlayerDiscProperties(player.id);
+            
+            if (pos && pos.x < RED_PENALTY_LINE) {
+
+                room.setPlayerDiscProperties(player.id, {
+                    x: RED_PENALTY_LINE,
+                    y: pos.y,
+                    xspeed: 0,
+                    yspeed: pos.yspeed
+                });
+                
+
+                if (!playerLastPositions[player.id].warned || 
+                    (Date.now() - playerLastPositions[player.id].warnTime > 2000)) {
+                    msg("⚠️ " + player.name + " - Ceza sahasında 3 oyuncu var! Giriş engellendi", colors.warning, player.id);
+                    playerLastPositions[player.id].warned = true;
+                    playerLastPositions[player.id].warnTime = Date.now();
+                }
+            }
+        }
+    }
+
+    if (blueInPenalty.length > MAX_PLAYERS_IN_PENALTY) {
+
+        blueInPenalty.sort(function(a, b) {
+            return a.enterTime - b.enterTime;
+        });
+        
+
+        for (var k = MAX_PLAYERS_IN_PENALTY; k < blueInPenalty.length; k++) {
+            var playerData = blueInPenalty[k];
+            var player = playerData.player;
+            var pos = room.getPlayerDiscProperties(player.id);
+            
+            if (pos && pos.x > BLUE_PENALTY_LINE) {
+
+                room.setPlayerDiscProperties(player.id, {
+                    x: BLUE_PENALTY_LINE,
+                    y: pos.y,
+                    xspeed: 0,
+                    yspeed: pos.yspeed
+                });
+                
+
+                if (!playerLastPositions[player.id].warned || 
+                    (Date.now() - playerLastPositions[player.id].warnTime > 2000)) {
+                    msg("⚠️ " + player.name + " - Ceza sahasında 3 oyuncu var! Giriş engellendi", colors.warning, player.id);
+                    playerLastPositions[player.id].warned = true;
+                    playerLastPositions[player.id].warnTime = Date.now();
+                }
+            }
+        }
+    }
+}
+
+function moveLosingTeamToSpec(losingTeam) {
+    let losers = getTeam(losingTeam);
+    losers.forEach(p => {
+        room.setPlayerTeam(p.id, 0);
+    });
+    msg("🔄 " + (losingTeam === 1 ? "KIRMIZI" : "MAVİ") + " takım izleyiciye alındı", colors.warning);
+}
+
+function activateChooseMode() {
+    selectionActive = true;
+    choosingTeam = winnerTeam;
+    msg("═══════════════════════════════════", colors.success);
+    msg("⚽ SEÇME MODU BAŞLADI!", colors.bot);
+    msg("Kazanan takım oyuncu seçecek", colors.spec);
+    msg("═══════════════════════════════════", colors.success);
+}
+
+function choosePlayer() {
+    if (!selectionActive) return;
+    
+    updateQueue();
+    
+    if (specQueue.length === 0) {
+        if (getTeam(1).length === config.maxPlayersPerTeam && getTeam(2).length === config.maxPlayersPerTeam) {
+            selectionActive = false;
+            msg("✅ Takımlar tam! Oyun başlıyor...", colors.success);
+            setTimeout(function() { room.startGame(); }, 2000);
+        }
+        return;
+    }
+    
+    var choosingTeamName = choosingTeam === 1 ? "🔴 KIRMIZI" : "🔵 MAVİ";
+    
+    msg("═══════════════════════════════════", colors.bot);
+    msg(choosingTeamName + " TAKIMIN SIRASI!", choosingTeam === 1 ? colors.red : colors.blue);
+    msg("Oyuncu seçmek için NUMARA veya İSİM yazın", colors.spec);
+    msg("Örnek: 1 veya @spy veya spy", colors.spec);
+    msg("═══════════════════════════════════", colors.bot);
+    
+
+    for (var i = 0; i < specQueue.length; i++) {
+        msg((i + 1) + " - " + specQueue[i].name, colors.spec);
+    }
+    
+    msg("═══════════════════════════════════", colors.bot);
+}
+
+
+// =============================================================================
+// GOL EFEKTLERİ 
+// =============================================================================
+
+function pointDistance(p1, p2) {
+    var d1 = p1.x - p2.x;
+    var d2 = p1.y - p2.y;
+    return Math.sqrt(d1 * d1 + d2 * d2);
+}
+
+function getLastTouchOfTheBall() {
+    var ball = room.getBallPosition();
+    var players = room.getPlayerList().filter(function(p) { return p.team !== 0; });
+    for (var i = 0; i < players.length; i++) {
+        if (players[i].position != null) {
+            if (pointDistance(players[i].position, ball) < triggerDistance) {
+                activePlay = true;
+                if (lastPlayersTouched[0] == null || lastPlayersTouched[0].id != players[i].id) {
+                    lastPlayersTouched[1] = lastPlayersTouched[0];
+                    lastPlayersTouched[0] = players[i];
+                }
+                lastTeamTouched = players[i].team;
+            }
+        }
+    }
+}
+
+
+function teleportDiscs() {
+    var ball = room.getBallPosition();
+    var goalX = ball.x < 0 ? -700 : 700;
+    
+    // Üst direk efektleri (kırmızı tonları)
+    room.setDiscProperties(9, { x: goalX, y: -90, xspeed: 2, yspeed: 1, radius: 5, color: 0xFE4141 });
+    room.setDiscProperties(10, { x: goalX, y: -90, xspeed: -2, yspeed: 2, radius: 5, color: 0xFF6B6B });
+    room.setDiscProperties(11, { x: goalX, y: -90, xspeed: 1, yspeed: -1, radius: 5, color: 0xFFD700 });
+    room.setDiscProperties(12, { x: goalX, y: -90, xspeed: -1, yspeed: 3, radius: 5, color: 0xFFA500 });
+    room.setDiscProperties(13, { x: goalX, y: -90, xspeed: 3, yspeed: 0, radius: 5, color: 0xFF4500 });
+    room.setDiscProperties(14, { x: goalX, y: -90, xspeed: -3, yspeed: 1, radius: 5, color: 0xDC143C });
+    
+    // Alt direk efektleri (mavi tonları)
+    room.setDiscProperties(15, { x: goalX, y: 90, xspeed: 2, yspeed: -1, radius: 5, color: 0x4169E1 });
+    room.setDiscProperties(16, { x: goalX, y: 90, xspeed: -2, yspeed: -2, radius: 5, color: 0x00BFFF });
+    room.setDiscProperties(17, { x: goalX, y: 90, xspeed: 1, yspeed: 1, radius: 5, color: 0x1E90FF });
+    room.setDiscProperties(18, { x: goalX, y: 90, xspeed: -1, yspeed: -3, radius: 5, color: 0x00CED1 });
+    room.setDiscProperties(19, { x: goalX, y: 90, xspeed: 3, yspeed: 0, radius: 5, color: 0x7B68EE });
+    room.setDiscProperties(20, { x: goalX, y: 90, xspeed: -3, yspeed: -1, radius: 5, color: 0x6495ED });
+}
+
+// Oyuncudan patlama efekti
+function teleportDiscsFire() {
+    if (lastPlayersTouched[0] == null || lastPlayersTouched[0].team === 0) return;
+    var playerDisc = room.getPlayerDiscProperties(lastPlayersTouched[0].id);
+    if (playerDisc == null) return;
+    
+    var discColor = lastPlayersTouched[0].team === 1 ? 0xFE4141 : 0x4169E1;
+    var speed = 8;
+    
+    for (var i = 0; i < EFFECT_DISC_COUNT; i++) {
+        var angle = (2 * Math.PI / EFFECT_DISC_COUNT) * i;
+        room.setDiscProperties(EFFECT_DISC_START + i, {
+            x: playerDisc.x,
+            y: playerDisc.y,
+            xspeed: speed * Math.cos(angle),
+            yspeed: speed * Math.sin(angle),
+            radius: 5,
+            color: discColor
+        });
+    }
+}
+
+// Diskleri sıfırla
+function resetDiscs() {
+    for (var i = 0; i < EFFECT_DISC_COUNT; i++) {
+        room.setDiscProperties(EFFECT_DISC_START + i, { x: -900, y: 400, xspeed: 0, yspeed: 0, radius: 0 });
+    }
+}
+
+// Avatar kutlama
+function avatarCelebration(playerId, av1, av2) {
+    var count = 0;
+    var interval = setInterval(function() {
+        room.setPlayerAvatar(playerId, count % 2 === 0 ? av1 : av2);
+        count++;
+        if (count >= 8) {
+            clearInterval(interval);
+            room.setPlayerAvatar(playerId, null);
+        }
+    }, 200);
+}
+
+// =============================================================================
+// EVENT
+// =============================================================================
+
+room.onPlayerJoin = function(player) {
+
+    getPlayerBalance(player.id, player.auth);
+    msg("💰 Başlangıç bakiyeniz: " + betConfig.startBalance + "TL", 0xFFD700, player.id);
+    msg("!bahis yazarak bahis yapabilirsiniz", colors.spec, player.id);
+
+    playerInfo.push({
+        id: player.id,
+        name: player.name,
+        auth: player.auth,
+        joinTime: Date.now()
+    });
+    
+
+    updateQueue();
+    
+    if (player.auth === config.masterAuth) {
+        room.setPlayerAdmin(player.id, true);
+        msg("👑 Hoş geldin Admin!", colors.success, player.id);
+    }
+    
+    else if (player.auth === config.adminAuth) {
+        room.setPlayerAdmin(player.id, true);
+        msg("👑 Hoş geldin Admin!", colors.success, player.id);
+    }
+    
+    msg("👋 Hoş geldin " + player.name, colors.bot, player.id);
+    msg("💻 Bot kodlarına ulaşmak için !github yazabilirsiniz", colors.success, player.id);
+     msg("!bahis ile bahis menüsünü açabilir !bakiyem ile bakiyeni görebilirsin", colors.success, player.id);
+    
+    // Oyun bitmişse ve seçme aktifse bilgilendir
+    if (selectionActive) {
+        msg("⚽ Şu anda seçme modu aktif!", colors.warning, player.id);
+    }
+};
+
+room.onPlayerLeave = function(player) {
+
+    playerInfo = playerInfo.filter(pi => pi.id !== player.id);
+    
+
+    updateQueue();
+    
+    msg("👋 " + player.name + " ayrıldı", colors.spec);
+};
+
+room.onPlayerChat = function(player, message) {
+    var p = room.getPlayer(player.id);
+    if (!p) return false;
+    var msgLower = message.toLowerCase().trim();
+
+// KISALTMA KONTROLÜ 
+if (shortcuts[msgLower]) {
+    if (chatMuted && !p.admin) {
+        var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
+        var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+        
+        for (var i = 0; i < adminList.length; i++) {
+            room.sendAnnouncement(
+                "[SUSTURULDU] " + p.name + ": " + shortcuts[msgLower], 
+                adminList[i].id, 
+                chatColor, 
+                "normal", 
+                0
+            );
+        }
+        return false;
+    }
+    
+
+    var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+    room.sendAnnouncement(
+        p.name + ": " + shortcuts[msgLower], 
+        null, 
+        chatColor, 
+        "bold", 
+        p.team !== 0 ? 1 : 0
+    );
+    return false;
+}
+    
+
+if (msgLower === atob("IWdpdGh1Yg==") || msgLower === atob("Z2l0aHVi")) {
+        msg(atob("PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09"), colors.bot, p.id);
+        msg(atob("8J+TgiBCT1QgS0FZTkFLIEtPRFU="), colors.success, p.id);
+        msg(atob("8J+UlyA=") + config.babaLink, 0x00FF00, p.id);
+        msg(atob("PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09"), colors.bot, p.id);
+        return false;
+    }
+    
+
+
+
+// BAHİS KOMUTLARI - onPlayerChat içine eklenecek
+
+// KISA KOMUTLAR - !red, !blue, !beraberlik
+if (msgLower.indexOf("!red ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 2) {
+        var amount = parseFloat(parts[1]);
+        if (!isNaN(amount)) {
+            placeBet(p, "teamWin", "red", amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !red 20", colors.warning, p.id);
+        }
+    }
+    return false;
+}
+
+if (msgLower.indexOf("!blue ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 2) {
+        var amount = parseFloat(parts[1]);
+        if (!isNaN(amount)) {
+            placeBet(p, "teamWin", "blue", amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !blue 20", colors.warning, p.id);
+        }
+    }
+    return false;
+}
+
+if (msgLower.indexOf("!beraberlik ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 2) {
+        var amount = parseFloat(parts[1]);
+        if (!isNaN(amount)) {
+            placeBet(p, "draw", null, amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !beraberlik 15", colors.warning, p.id);
+        }
+    }
+    return false;
+}
+
+// İLK GOL BAHİSİ
+if (msgLower.indexOf("!ilkgol ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3 && (parts[1].toLowerCase() === "red" || parts[1].toLowerCase() === "blue")) {
+        var team = parts[1].toLowerCase();
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount)) {
+            placeBet(p, "firstGoal", team, amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !ilkgol red 15", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !ilkgol red/blue [miktar]", colors.warning, p.id);
+    }
+    return false;
+}
+
+// SON GOL BAHİSİ
+if (msgLower.indexOf("!songol ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3 && (parts[1].toLowerCase() === "red" || parts[1].toLowerCase() === "blue")) {
+        var team = parts[1].toLowerCase();
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount)) {
+            placeBet(p, "lastGoal", team, amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !songol blue 15", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !songol red/blue [miktar]", colors.warning, p.id);
+    }
+    return false;
+}
+
+// KG (Karşılıklı Gol)
+if (msgLower.indexOf("!kg ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 2) {
+        var amount = parseFloat(parts[1]);
+        if (!isNaN(amount)) {
+            placeBet(p, "bothScore", null, amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !kg 20", colors.warning, p.id);
+        }
+    }
+    return false;
+}
+
+// ÜST BAHSİ
+if (msgLower.indexOf("!ust ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3) {
+        var line = parts[1];
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount) && (line === "2.5" || line === "3.5")) {
+            placeBet(p, "over", line, amount);
+        } else {
+            msg("❌ Kullanım: !ust 2.5/3.5 [miktar]", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !ust 2.5 20", colors.warning, p.id);
+    }
+    return false;
+}
+
+// ALT BAHSİ
+if (msgLower.indexOf("!alt ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3) {
+        var line = parts[1];  // ✅ DOĞRU
+        var amount = parseFloat(parts[2]); // ✅ DOĞRU
+        if (!isNaN(amount) && (line === "2.5" || line === "3.5")) {
+            placeBet(p, "under", line, amount);
+        } else {
+            msg("❌ Kullanım: !alt 2.5/3.5 [miktar]", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !alt 2.5 20", colors.warning, p.id);
+    }
+    return false;
+}
+
+// MAÇ SKORU
+if (msgLower.indexOf("!ms ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3) {
+        var score = parts[1];
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount) && betTypes.exactScore[score]) {
+            placeBet(p, "exactScore", score, amount);
+        } else {
+            msg("❌ Geçersiz skor! Örnek: 2-0, 1-1, 3-2", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !ms 2-0 20", colors.warning, p.id);
+    }
+    return false;
+}
+
+// OYUNCU GOL
+if (msgLower.indexOf("!oyuncugol ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3) {
+        var targetName = parts[1];
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount)) {
+            var allPlayers = room.getPlayerList().filter(function(pl) { return pl.team !== 0; });
+            var targetPlayer = findPlayerByName(targetName, allPlayers);
+            if (targetPlayer) {
+                placeBet(p, "playerGoal", targetPlayer.id, amount);
+            } else {
+                msg("❌ Oyuncu bulunamadı!", colors.warning, p.id);
+            }
+        } else {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !oyuncugol @nick 10", colors.warning, p.id);
+    }
+    return false;
+}
+
+// OYUNCU ASİST
+if (msgLower.indexOf("!oyuncuasist ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3) {
+        var targetName = parts[1];
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount)) {
+            var allPlayers = room.getPlayerList().filter(function(pl) { return pl.team !== 0; });
+            var targetPlayer = findPlayerByName(targetName, allPlayers);
+            if (targetPlayer) {
+                placeBet(p, "playerAssist", targetPlayer.id, amount);
+            } else {
+                msg("❌ Oyuncu bulunamadı!", colors.warning, p.id);
+            }
+        } else {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !oyuncuasist @nick 10", colors.warning, p.id);
+    }
+    return false;
+}
+
+// İLK GOLÜ OYUNCU ATAR
+if (msgLower.indexOf("!ilkgoloyuncu ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3) {
+        var targetName = parts[1];
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount)) {
+            var allPlayers = room.getPlayerList().filter(function(pl) { return pl.team !== 0; });
+            var targetPlayer = findPlayerByName(targetName, allPlayers);
+            if (targetPlayer) {
+                placeBet(p, "firstGoalPlayer", targetPlayer.id, amount);
+            } else {
+                msg("❌ Oyuncu bulunamadı!", colors.warning, p.id);
+            }
+        } else {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !ilkgoloyuncu @nick 10", colors.warning, p.id);
+    }
+    return false;
+}
+
+// ÇİFT GOL (2+)
+if (msgLower.indexOf("!ciftgol ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 3) {
+        var targetName = parts[1];
+        var amount = parseFloat(parts[2]);
+        if (!isNaN(amount)) {
+            var allPlayers = room.getPlayerList().filter(function(pl) { return pl.team !== 0; });
+            var targetPlayer = findPlayerByName(targetName, allPlayers);
+            if (targetPlayer) {
+                placeBet(p, "doubleGoal", targetPlayer.id, amount);
+            } else {
+                msg("❌ Oyuncu bulunamadı!", colors.warning, p.id);
+            }
+        } else {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+        }
+    } else {
+        msg("❌ Kullanım: !ciftgol @nick 10", colors.warning, p.id);
+    }
+    return false;
+}
+
+// TEK GOL
+if (msgLower.indexOf("!tekgol ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 2) {
+        var amount = parseFloat(parts[1]);
+        if (!isNaN(amount)) {
+            placeBet(p, "singleGoal", null, amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !tekgol 15", colors.warning, p.id);
+        }
+    }
+    return false;
+}
+
+// GOLSUZ (0-0)
+if (msgLower.indexOf("!golsuz ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    var parts = message.trim().split(" ");
+    if (parts.length === 2) {
+        var amount = parseFloat(parts[1]); // ✅ DOĞRU
+        if (!isNaN(amount)) {
+            placeBet(p, "noGoal", null, amount);
+        } else {
+            msg("❌ Geçersiz miktar! Örnek: !golsuz 10", colors.warning, p.id);
+        }
+    }
+    return false;
+}
+
+
+// !bakiyem komutu
+if (msgLower === "!bakiyem" || msgLower === "bakiyem") {
+    var balance = getPlayerBalance(p.id, p.auth);
+    msg("═══════════════════════════════════", 0xFFD700, p.id);
+    msg("💰 BAKİYE BİLGİLERİ", 0xFFD700, p.id);
+    msg("Güncel Bakiye: " + balance.balance.toFixed(2) + "TL", colors.success, p.id);
+    msg("Toplam Kazanç: " + balance.totalWon.toFixed(2) + "TL", 0x00FF00, p.id);
+    msg("Toplam Kayıp: " + balance.totalLost.toFixed(2) + "TL", 0xFF0000, p.id);
+    msg("Toplam Bahis: " + balance.betsPlaced, colors.spec, p.id);
+    msg("═══════════════════════════════════", 0xFFD700, p.id);
+    return false;
+}
+
+if (msgLower === "!bahis" || msgLower === "bahis") {
+    msg("═══════════════════════════════════", 0xFFD700, p.id);
+    msg("📊 !bahistakim - Takım bahisleri", colors.spec, p.id);
+    msg("⚽ !bahisgol - Gol bahisleri", colors.spec, p.id);
+    msg("👤 !bahisoyuncu - Oyuncu bahisleri", colors.spec, p.id);
+    msg("🎯 !bahisozel - Özel bahisler", colors.spec, p.id);
+    msg("💰 !bakiyem - Bakiye görüntüle", colors.spec, p.id);
+    msg("═══════════════════════════════════", 0xFFD700, p.id);
+    return false;
+}
+
+if (msgLower === "!bahistakim") {
+    msg("═══════════════════════════════════", 0xFF0000, p.id);
+    msg("!red [miktar] - Kırmızı kazanır (x1.8)", colors.spec, p.id);
+    msg("!blue [miktar] - Mavi kazanır (x1.8)", colors.spec, p.id);
+    msg("!beraberlik [miktar] - Berabere biter (x3.5)", colors.spec, p.id);
+    msg("Örnek: !red 20", colors.warning, p.id);
+    msg("═══════════════════════════════════", 0xFF0000, p.id);
+    return false;
+}
+
+if (msgLower === "!bahisgol") {
+    msg("═══════════════════════════════════", 0x00FF00, p.id);
+    msg("!ilkgol red/blue [miktar] - İlk golü kim atar (x2.3)", colors.spec, p.id);
+    msg("!songol red/blue [miktar] - Son golü kim atar (x2.3)", colors.spec, p.id);
+    msg("!kg [miktar] - Karşılıklı gol (x2.2)", colors.spec, p.id);
+    msg("!ust [2.5/3.5] [miktar] - Üst bahsi (x1.9/x2.5)", colors.spec, p.id);
+    msg("!alt [2.5/3.5] [miktar] - Alt bahsi (x1.9/x1.6)", colors.spec, p.id);
+    msg("!ms [skor] [miktar] - Maç skoru (x4.5+)", colors.spec, p.id);
+    msg("Örnek: !ilkgol red 15 | !ust 2.5 20", colors.warning, p.id);
+    return false;
+}
+
+if (msgLower === "!bahisoyuncu") {
+    msg("═══════════════════════════════════", 0x00BFFF, p.id);
+    msg("!oyuncugol @nick [miktar] - Oyuncu gol atar (x2.5)", colors.spec, p.id);
+    msg("!oyuncuasist @nick [miktar] - Oyuncu asist yapar (x3.0)", colors.spec, p.id);
+    msg("!ilkgoloyuncu @nick [miktar] - İlk golü o atar (x3.5)", colors.spec, p.id);
+    msg("!ciftgol @nick [miktar] - 2+ gol atar (x4.0)", colors.spec, p.id);
+    msg("Örnek: !oyuncugol @spy 10", colors.warning, p.id);
+    msg("═══════════════════════════════════", 0x00BFFF, p.id);
+    return false;
+}
+
+if (msgLower === "!bahisozel") {
+    msg("═══════════════════════════════════", 0xFF69B4, p.id);
+    msg("!tekgol [miktar] - Maçta tek gol olur (x5.0)", colors.spec, p.id);
+    msg("!golsuz [miktar] - 0-0 biter (x7.0)", colors.spec, p.id);
+    msg("Örnek: !tekgol 15 | !golfest 10", colors.warning, p.id);
+    msg("═══════════════════════════════════", 0xFF69B4, p.id);
+    return false;
+}
+
+
+// Bahis yapma - Sadece spec oyuncular
+if (msgLower.indexOf("!bahis ") === 0) {
+    if (p.team !== 0) {
+        msg("❌ Sadece izleyici oyuncular bahis yapabilir!", colors.warning, p.id);
+        return false;
+    }
+    
+    if (!bettingOpen) {
+        msg("❌ Bahisler şu anda kapalı! Maç başladığında açılacak", colors.warning, p.id);
+        return false;
+    }
+    
+    var parts = message.trim().split(" ");
+    
+    // !bahis red/blue [miktar]
+    if (parts.length === 3 && (parts[1].toLowerCase() === "red" || parts[1].toLowerCase() === "blue")) {
+        var team = parts[1].toLowerCase();
+        var amount = parseFloat(parts[2]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "teamWin", team, amount);
+        return false;
+    }
+    
+    // !bahis beraberlik [miktar]
+    if (parts.length === 3 && parts[1].toLowerCase() === "beraberlik") {
+        var amount = parseFloat(parts[2]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "draw", null, amount);
+        return false;
+    }
+    
+    // !bahis kg [miktar] (Karşılıklı gol)
+    if (parts.length === 3 && parts[1].toLowerCase() === "kg") {
+        var amount = parseFloat(parts[2]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "bothScore", null, amount);
+        return false;
+    }
+    
+    // !bahis @nick gol [miktar]
+    if (parts.length === 4 && parts[2].toLowerCase() === "gol") {
+        var targetName = parts[1];
+        var amount = parseFloat(parts[3]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        var allPlayers = room.getPlayerList().filter(function(pl) { return pl.team !== 0; });
+        var targetPlayer = findPlayerByName(targetName, allPlayers);
+        
+        if (!targetPlayer) {
+            msg("❌ Oyuncu bulunamadı!", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "playerGoal", targetPlayer.id, amount);
+        return false;
+    }
+    
+    // !bahis @nick asist [miktar]
+    if (parts.length === 4 && parts[2].toLowerCase() === "asist") {
+        var targetName = parts[1];
+        var amount = parseFloat(parts[3]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        var allPlayers = room.getPlayerList().filter(function(pl) { return pl.team !== 0; });
+        var targetPlayer = findPlayerByName(targetName, allPlayers);
+        
+        if (!targetPlayer) {
+            msg("❌ Oyuncu bulunamadı!", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "playerAssist", targetPlayer.id, amount);
+        return false;
+    }
+    
+    // !bahis ms 2-0 [miktar] (Maç skoru)
+    if (parts.length === 4 && parts[1].toLowerCase() === "ms") {
+        var score = parts[2];
+        var amount = parseFloat(parts[3]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        if (!betTypes.exactScore[score]) {
+            msg("❌ Geçersiz skor! Örnek: 2-0, 1-1, 3-2", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "exactScore", score, amount);
+        return false;
+    }
+    
+    // !bahis ust 2.5 [miktar]
+    if (parts.length === 4 && parts[1].toLowerCase() === "ust") {
+        var line = parts[2];
+        var amount = parseFloat(parts[3]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        if (!betTypes.over[line]) {
+            msg("❌ Geçersiz çizgi! (2.5 veya 3.5)", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "over", line, amount);
+        return false;
+    }
+    
+    // !bahis alt 2.5 [miktar]
+    if (parts.length === 4 && parts[1].toLowerCase() === "alt") {
+        var line = parts[2];
+        var amount = parseFloat(parts[3]);
+        
+        if (isNaN(amount)) {
+            msg("❌ Geçersiz miktar!", colors.warning, p.id);
+            return false;
+        }
+        
+        if (!betTypes.under[line]) {
+            msg("❌ Geçersiz çizgi! (2.5 veya 3.5)", colors.warning, p.id);
+            return false;
+        }
+        
+        placeBet(p, "under", line, amount);
+        return false;
+    }
+    
+    msg("❌ Geçersiz bahis komutu! !bahis yazarak yardım alın", colors.warning, p.id);
+    return false;
+}
+
+// SUS KOMUTU 
+if (msgLower === "!sus" || msgLower === "sus") {
+    var isAdmin = room.getPlayer(player.id).admin;
+    
+    if (!isAdmin) {
+        msg("❌ Bu komutu sadece adminler kullanabilir!", colors.warning, p.id);
+        return false;
+    }
+    
+    chatMuted = true;
+    msg("🔇 " + p.name + " chati kapattı!", colors.warning);
+    return false;
+}
+
+// KONUŞ KOMUTU 
+if (msgLower === "!konuş" || msgLower === "!konus" || msgLower === "konuş" || msgLower === "konus") {
+    var isAdmin = room.getPlayer(player.id).admin;
+    
+    if (!isAdmin) {
+        msg("❌ Bu komutu sadece adminler kullanabilir!", colors.warning, p.id);
+        return false;
+    }
+    
+    chatMuted = false;
+    msg("🔊 " + p.name + " chati açtı!", colors.success);
+    return false;
+}
+
+// RGB komutu (sadece adminler)
+if (msgLower === "!rgb" || msgLower === "rgb") {
+    var isAdmin = room.getPlayer(player.id).admin;
+    
+    if (!isAdmin) {
+        return false; 
+    }
+    
+    rainbowBallActive = !rainbowBallActive;
+    
+    if (rainbowBallActive) {
+
+        var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
+        for (var i = 0; i < adminList.length; i++) {
+            msg("🌈 Renkli top AÇILDI Açan >> "+ p.name, colors.success, adminList[i].id);
+        }
+    } else {
+
+        room.setDiscProperties(0, { color: 0xFFFFFF });
+        
+        var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
+        for (var i = 0; i < adminList.length; i++) {
+            msg("⚪ Renkli top KAPATILDI Kapatan >> "+ p.name, colors.warning, adminList[i].id);
+
+        }
+    }
+    
+    return false;
+}
+
+
+// SEÇİM SİSTEMİ - İSİM VEYA NUMARA İLE OYUNCU SEÇİMİ
+if (selectionActive && p.team === choosingTeam) {
+    updateQueue();
+    
+    if (specQueue.length === 0) {
+        msg("❌ Seçilecek oyuncu kalmadı!", colors.warning, p.id);
+        return false;
+    }
+    
+    var targetPlayer = null;
+    
+    // Numara ile seçim (1, 2, 3...)
+    if (msgLower.match(/^[0-9]+$/)) {
+        var targetNum = parseInt(message.trim());
+        
+        if (targetNum < 1 || targetNum > specQueue.length) {
+            msg("❌ Geçersiz numara! 1-" + specQueue.length + " arası bir numara girin", colors.warning, p.id);
+            return false;
+        }
+        
+        targetPlayer = specQueue[targetNum - 1];
+    } 
+    // İsim ile seçim (@isim veya isim)
+    else {
+        targetPlayer = queryPlayer(message, specQueue);
+        
+        if (!targetPlayer) {
+            msg("❌ Oyuncu bulunamadı! İsmi kontrol edin veya numara kullanın", colors.warning, p.id);
+            return false;
+        }
+    }
+    
+    // Oyuncuyu takıma ekle
+    room.setPlayerTeam(targetPlayer.id, choosingTeam);
+    msg("✅ " + targetPlayer.name + " seçildi!", choosingTeam === 1 ? colors.red : colors.blue);
+    
+    // Sırayı değiştir
+    choosingTeam = choosingTeam === 1 ? 2 : 1;
+    
+    setTimeout(function() {
+        updateQueue();
+        
+        if (getTeam(1).length === config.maxPlayersPerTeam && getTeam(2).length === config.maxPlayersPerTeam) {
+            selectionActive = false;
+            msg("✅ Takımlar tam! (4v4) Oyun başlıyor...", colors.success);
+            setTimeout(function() { room.startGame(); }, 2000);
+        } else {
+            choosePlayer();
+        }
+    }, 500);
+    
+    return false;
+}
+    
+
+// Chat kontrolü
+if (chatMuted && !p.admin) {
+    // Chat kapalıysa ve oyuncu admin değilse, mesajı sadece adminlere göster
+    var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
+    var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+    
+    for (var i = 0; i < adminList.length; i++) {
+        room.sendAnnouncement(
+            "[SUSTURULDU] " + p.name + ": " + message, 
+            adminList[i].id, 
+            chatColor, 
+            "normal", 
+            0
+        );
+    }
+    return false;
+} else {
+    // Chat açıksa veya admin konuşuyorsa, herkese göster
+    var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+    room.sendAnnouncement(p.name + ": " + message, null, chatColor, "normal", p.team !== 0 ? 1 : 0);
+    return false;
+}
+};
+
+room.onPlayerTeamChange = function(changedPlayer, byPlayer) {
+
+};
+room.onGameStart = function(byPlayer) {
+    gameInProgress = true;
+    selectionActive = false;
+    activePlay = false;
+    lastPlayersTouched = [null, null];
+    playerLastPositions = {}; 
+
+    resetMatchStats();
+    
+    // Oyuncuya maç başı ödülü ver
+    var activePlayers = room.getPlayerList().filter(function(pl) { return pl.team !== 0; });
+    for (var i = 0; i < activePlayers.length; i++) {
+        var pl = activePlayers[i];
+        updateBalance(pl.auth, betConfig.matchReward);
+    }
+    
+    msg("⚽ İyi oyunlar!", colors.success);
+    msg("💰 Oyunculara maç başı ödül: " + betConfig.matchReward + "TL", 0xFFD700);
+    msg("📍 Ceza sahasına maksimum 3 oyuncu girebilir!", colors.warning);
+    
+    // Bahisleri aç
+    openBetting();
+};
+
+
+room.onGameStop = function(byPlayer) {
+    gameInProgress = false;
+    selectionActive = false;
+
+    closeBetting();
+    evaluateBets();
+    
+    var scores = room.getScores();
+    
+    
+    var scores = room.getScores();
+    
+
+    if (!scores || scores.time === 0) {
+        msg("⏸️ Oyun durduruldu!", colors.warning);
+        return;
+    }
+    
+
+    if (scores.red === scores.blue) {
+        msg("🤝 Maç berabere bitti! (" + scores.red + " - " + scores.blue + ")", colors.warning);
+        setTimeout(function() {
+            msg("🔄 Yeni maç başlıyor...", colors.success);
+            room.startGame();
+        }, 3000);
+        return; 
+    }
+    
+
+    var losingTeam = scores.red > scores.blue ? 2 : 1;
+    winnerTeam = scores.red > scores.blue ? 1 : 2;
+    
+    msg("═══════════════════════════════════", colors.success);
+    msg("⚽ MAÇ BİTTİ!", colors.bot);
+    msg("Skor: " + scores.red + " - " + scores.blue, colors.spec);
+    msg((winnerTeam === 1 ? "🔴 KIRMIZI" : "🔵 MAVİ") + " TAKIM KAZANDI!", winnerTeam === 1 ? colors.red : colors.blue);
+    msg("═══════════════════════════════════", colors.success);
+    
+    setTimeout(function() { 
+
+        moveLosingTeamToSpec(losingTeam);
+        
+        setTimeout(function() {
+            updateQueue();
+            
+       
+            var addedCount = 0;
+            while (getTeam(losingTeam).length < config.maxPlayersPerTeam && specQueue.length > 0) {
+                updateQueue();
+                room.setPlayerTeam(specQueue[0].id, losingTeam);
+                addedCount++;
+            }
+            
+            if (addedCount > 0) {
+                var teamName = losingTeam === 1 ? "KIRMIZI" : "MAVİ";
+                msg("✅ " + addedCount + " oyuncu " + teamName + " takıma eklendi!", colors.success);
+            }
+
+            if (getTeam(1).length === config.maxPlayersPerTeam && getTeam(2).length === config.maxPlayersPerTeam) {
+                msg("✅ Takımlar tam! (4v4) Oyun başlıyor...", colors.success);
+                setTimeout(function() { room.startGame(); }, 2000);
+            } else {
+        
+                activateChooseMode();
+                choosePlayer();
+            }
+        }, 1500);
+    }, 2000);
+};
+room.onPlayerBallKick = function(player) {
+    // Top her vurulduğunda renk değiştir
+if (rainbowBallActive) {
+    currentColorIndex = Math.floor(Math.random() * ballColors.length);
+    room.setDiscProperties(0, { color: ballColors[currentColorIndex] });
+}
+    activePlay = true;
+    lastTeamTouched = player.team;
+    if (lastPlayersTouched[0] == null || lastPlayersTouched[0].id != player.id) {
+        lastPlayersTouched[1] = lastPlayersTouched[0];
+        lastPlayersTouched[0] = player;
+    }
+};
+
+room.onTeamGoal = function(team) {
+        var scores = room.getScores();
+    
+    if (matchStats.firstGoalTeam === null) {
+        matchStats.firstGoalTeam = team;
+        if (lastPlayersTouched[0] != null && lastPlayersTouched[0].team === team) {
+            matchStats.firstGoalPlayer = lastPlayersTouched[0].id;
+        }
+    }
+    
+
+    matchStats.lastGoalTeam = team;
+    if (lastPlayersTouched[0] != null && lastPlayersTouched[0].team === team) {
+        matchStats.lastGoalPlayer = lastPlayersTouched[0].id;
+    }
+    // Efektler
+    previousEffectChoice = previousEffectChoice === 0 ? 1 : 0;
+    if (previousEffectChoice === 0) {
+        teleportDiscs();
+    } else {
+        teleportDiscsFire();
+    }
+    setTimeout(resetDiscs, 2000);
+    
+    var scores = room.getScores();
+    var teamColor = team === 1 ? colors.red : colors.blue;
+    
+    // BAHİS SİSTEMİ: İlk golde bahisleri kapat
+    if (scores.red + scores.blue === 1) {
+        closeBetting();
+    }
+    
+    // BAHİS SİSTEMİ: Gol istatistiklerini kaydet
+    var scorerId = null;
+    var assisterId = null;
+    
+    if (lastPlayersTouched[0] != null && lastPlayersTouched[0].team === team) {
+        var scorer = lastPlayersTouched[0];
+        scorerId = scorer.id;
+        
+        // Gol ödülü ver
+        updateBalance(scorer.auth, betConfig.goalReward);
+        
+        if (lastPlayersTouched[1] != null && lastPlayersTouched[1].team === team) {
+            assisterId = lastPlayersTouched[1].id;
+            
+            // Asist ödülü ver
+            updateBalance(lastPlayersTouched[1].auth, betConfig.assistReward);
+            
+            msg("⚽ GOL! " + scorer.name + " (+" + betConfig.goalReward + "TL) | Asist: " + lastPlayersTouched[1].name + " (+" + betConfig.assistReward + "TL) | " + scores.red + " - " + scores.blue, teamColor);
+            avatarCelebration(lastPlayersTouched[1].id, "🤝", "👟");
+        } else {
+            msg("⚽ GOL! " + scorer.name + " (+" + betConfig.goalReward + "TL) | " + scores.red + " - " + scores.blue, teamColor);
+        }
+        avatarCelebration(scorer.id, "⚽", "🎯");
+    } else if (lastPlayersTouched[0] != null) {
+        msg("😅 KENDİ KALESİNE! " + lastPlayersTouched[0].name + " | " + scores.red + " - " + scores.blue, colors.warning);
+        avatarCelebration(lastPlayersTouched[0].id, "🤦", "🤡");
+        scorerId = lastPlayersTouched[0].id;
+    }
+    
+    // İstatistikleri güncelle
+    if (scorerId) {
+        addGoalStat(scorerId, assisterId);
+    }
+    
+    // Maç gollerini güncelle
+    if (team === 1) matchStats.goals.red++;
+    if (team === 2) matchStats.goals.blue++;
+};
+
+room.onPositionsReset = function() { lastPlayersTouched = [null, null]; activePlay = false; };
+room.onGameTick = function() { 
+    if (gameInProgress) {
+        getLastTouchOfTheBall();
+        checkPenaltyAreaLimit(); 
+    }
+};
+
+// =============================================================================
+// BAŞLATMA KISMI
+// =============================================================================
+
+room.setCustomStadium(qatarMapOriginal);
+
+setTimeout(function() {
+    room.setTeamColors(1, 60, 0xFFFFFF, [0xFF3B3B, 0x771313, 0x330A0A]);
+    room.setTeamColors(2, 60, 0xFFFFFF, [0x0080FF, 0x004077, 0x002033]);
+    msg("🎨 Formalar ayarlandı!", colors.success);
+    msg("🎮 Bot aktif! Gol efektleri açık!", colors.bot);
+}, 1000);
