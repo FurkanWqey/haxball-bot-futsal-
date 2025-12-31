@@ -29,7 +29,7 @@ var _0x1b5e = function(s) { return atob(s); };
 
 var config = {
     masterAuth: _0x1b5e(_0x4a2c[0]),
-    adminAuth: "", // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
+    adminAuth: ["auth 1", "admin auth 2"], // BURAYA KENDİ AUTH KODUNUZU GİRİN OTO ADMİN İÇİN GEREKLİDİR KODDA BAŞKA BİRŞEY DEĞİŞMENİZE GEREK YOKTUR
     maxPlayersPerTeam: 4,
     githubLink: "https://github.com/FurkanWqey/haxball-bot-futsal-/blob/main/futsal%20bot.js"
 };
@@ -73,8 +73,8 @@ var shortcuts = {
 // =============================================================================
 
 // Ceza sahası sınırları
-var RED_PENALTY_LINE = -400;    // Kırmızı takımın ceza sahası X sınırı
-var BLUE_PENALTY_LINE = 400;    // Mavi takımın ceza sahası X sınırı
+var RED_PENALTY_LINE = -394;    // Kırmızı takımın ceza sahası X sınırı
+var BLUE_PENALTY_LINE = 394;    // Mavi takımın ceza sahası X sınırı
 var MAX_PLAYERS_IN_PENALTY = 3; // Ceza sahasına girebilecek maksimum oyuncu sayısı
 
 var playerLastPositions = {};
@@ -486,22 +486,31 @@ room.onPlayerChat = function(player, message) {
     }
     
 
-        // RGB komutu (sadece adminler)
+// RGB komutu (sadece adminler)
 if (msgLower === "!rgb" || msgLower === "rgb") {
     var isAdmin = room.getPlayer(player.id).admin;
     
     if (!isAdmin) {
-        return false; // Admin değilse hiçbir şey gösterme
+        return false; 
     }
     
     rainbowBallActive = !rainbowBallActive;
     
     if (rainbowBallActive) {
-        msg("🌈 Renkli top AÇIK", colors.success, player.id);
+
+        var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
+        for (var i = 0; i < adminList.length; i++) {
+            msg("🌈 Renkli top AÇILDI Açan >> "+ p.name, colors.success, adminList[i].id);
+        }
     } else {
-        msg("⚪ Renkli top KAPALI", colors.warning, player.id);
-        // Topu beyaza döndür
+
         room.setDiscProperties(0, { color: 0xFFFFFF });
+        
+        var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
+        for (var i = 0; i < adminList.length; i++) {
+            msg("⚪ Renkli top KAPATILDI Kapatan >> "+ p.name, colors.warning, adminList[i].id);
+
+        }
     }
     
     return false;
