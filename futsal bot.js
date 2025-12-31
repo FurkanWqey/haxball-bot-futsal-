@@ -37,6 +37,8 @@ var config = {
 
 var gameInProgress = false;
 
+var chatMuted = false; // Chat kapalı mı açık mı kontrol eder
+
 // Renkli top sistemi
 var rainbowBallActive = false;
 var ballColors = [0x0000FF, 0xFF0000, 0xFF69B4, 0x00FF00, 0xFFFF00, 0x000080, 0x000000];
@@ -463,18 +465,35 @@ room.onPlayerChat = function(player, message) {
     if (!p) return false;
     var msgLower = message.toLowerCase().trim();
 
-    // KISALTMA KONTROLÜ
-    if (shortcuts[msgLower]) {
+// KISALTMA KONTROLÜ 
+if (shortcuts[msgLower]) {
+    if (chatMuted && !p.admin) {
+        var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
         var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
-        room.sendAnnouncement(
-            p.name + ": " + shortcuts[msgLower], 
-            null, 
-            chatColor, 
-            "bold", 
-            p.team !== 0 ? 1 : 0
-        );
+        
+        for (var i = 0; i < adminList.length; i++) {
+            room.sendAnnouncement(
+                "[SUSTURULDU] " + p.name + ": " + shortcuts[msgLower], 
+                adminList[i].id, 
+                chatColor, 
+                "normal", 
+                0
+            );
+        }
         return false;
     }
+    
+
+    var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+    room.sendAnnouncement(
+        p.name + ": " + shortcuts[msgLower], 
+        null, 
+        chatColor, 
+        "bold", 
+        p.team !== 0 ? 1 : 0
+    );
+    return false;
+}
     
     // GitHub linki
     if (msgLower === "!github" || msgLower === "github") {
@@ -485,6 +504,35 @@ room.onPlayerChat = function(player, message) {
         return false;
     }
     
+
+
+// SUS KOMUTU 
+if (msgLower === "!sus" || msgLower === "sus") {
+    var isAdmin = room.getPlayer(player.id).admin;
+    
+    if (!isAdmin) {
+        msg("❌ Bu komutu sadece adminler kullanabilir!", colors.warning, p.id);
+        return false;
+    }
+    
+    chatMuted = true;
+    msg("🔇 " + p.name + " chati kapattı!", colors.warning);
+    return false;
+}
+
+// KONUŞ KOMUTU 
+if (msgLower === "!konuş" || msgLower === "!konus" || msgLower === "konuş" || msgLower === "konus") {
+    var isAdmin = room.getPlayer(player.id).admin;
+    
+    if (!isAdmin) {
+        msg("❌ Bu komutu sadece adminler kullanabilir!", colors.warning, p.id);
+        return false;
+    }
+    
+    chatMuted = false;
+    msg("🔊 " + p.name + " chati açtı!", colors.success);
+    return false;
+}
 
 // RGB komutu (sadece adminler)
 if (msgLower === "!rgb" || msgLower === "rgb") {
@@ -572,9 +620,28 @@ if (selectionActive && p.team === choosingTeam) {
 }
     
 
+// Chat kontrolü
+if (chatMuted && !p.admin) {
+    // Chat kapalıysa ve oyuncu admin değilse, mesajı sadece adminlere göster
+    var adminList = room.getPlayerList().filter(function(pl) { return pl.admin; });
+    var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
+    
+    for (var i = 0; i < adminList.length; i++) {
+        room.sendAnnouncement(
+            "[SUSTURULDU] " + p.name + ": " + message, 
+            adminList[i].id, 
+            chatColor, 
+            "normal", 
+            0
+        );
+    }
+    return false;
+} else {
+    // Chat açıksa veya admin konuşuyorsa, herkese göster
     var chatColor = p.team === 1 ? colors.red : (p.team === 2 ? colors.blue : colors.spec);
     room.sendAnnouncement(p.name + ": " + message, null, chatColor, "normal", p.team !== 0 ? 1 : 0);
     return false;
+}
 };
 
 room.onPlayerTeamChange = function(changedPlayer, byPlayer) {
