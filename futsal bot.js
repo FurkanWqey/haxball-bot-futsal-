@@ -721,11 +721,11 @@ room.onGameStop = function(byPlayer) {
     }, 2000);
 };
 room.onPlayerBallKick = function(player) {
-    // Top her vurulduğunda renk değiştir
-if (rainbowBallActive) {
-    currentColorIndex = Math.floor(Math.random() * ballColors.length);
-    room.setDiscProperties(0, { color: ballColors[currentColorIndex] });
-}
+    // Sadece RGB aktifse renk değiştir
+    if (rainbowBallActive) {
+        room.setDiscProperties(0, {color: Math.floor(Math.random() * 0xFFFFFF)});
+    }
+    
     activePlay = true;
     lastTeamTouched = player.team;
     if (lastPlayersTouched[0] == null || lastPlayersTouched[0].id != player.id) {
