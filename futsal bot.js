@@ -435,11 +435,10 @@ room.onPlayerJoin = function(player) {
         room.setPlayerAdmin(player.id, true);
         msg("👑 Hoş geldin Admin!", colors.success, player.id);
     }
-    
-    else if (player.auth === config.adminAuth) {
-        room.setPlayerAdmin(player.id, true);
-        msg("👑 Hoş geldin Admin!", colors.success, player.id);
-    }
+else if (config.adminAuth.includes(player.auth)) {
+    room.setPlayerAdmin(player.id, true);
+    msg("👑 Hoş geldin Admin!", colors.success, player.id);
+}
     
     msg("👋 Hoş geldin " + player.name, colors.bot, player.id);
     msg("💻 Bot kodlarına ulaşmak için !github yazabilirsiniz", colors.success, player.id);
